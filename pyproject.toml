@@ -73,7 +73,6 @@ dev = [
     "tree-sitter-java>=0.23",
     "tree-sitter-c>=0.23",
     "tree-sitter-cpp>=0.23",
-    "tree-sitter-go>=0.23",
     "pytesseract>=0.3.13",
     "pillow>=10.0",
     "faster-whisper>=1.0",
@@ -84,6 +83,10 @@ dev = [
     "faiss-cpu>=1.16",
     "psycopg[binary]>=3.2",
     "pgvector>=0.4",
+]
+reranking-qwen3 = [
+    "sentence-transformers",
+    "torch",
 ]
 all = [
     "pymupdf>=1.24",
@@ -103,7 +106,6 @@ all = [
     "tree-sitter-java>=0.23",
     "tree-sitter-c>=0.23",
     "tree-sitter-cpp>=0.23",
-    "tree-sitter-go>=0.23",
     "pytesseract>=0.3.13",
     "pillow>=10.0",
     "faster-whisper>=1.0",
@@ -118,15 +120,8 @@ all = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*", "retrieval*"]
+include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*", "retrieval*", "reranking*"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
-
-
-[project.optional-dependencies]
-reranking-qwen3 = [
-    "sentence-transformers",
-    "torch",
-]
