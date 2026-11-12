@@ -11,7 +11,6 @@ from retrieval.strategies.hierarchical import (
     HierarchicalIndexer,
     HierarchicalRetrievalStrategy,
 )
-from retrieval.strategies.hierarchical.metadata import CHUNK_LEVEL_FIELD
 from tests.retrieval.conftest import make_document
 
 
@@ -262,6 +261,53 @@ def test_the_diagnostics_report_the_candidate_reduction(indexed):
     assert response.diagnostics.candidates_searched >= 0
     ratio = response.diagnostics.candidate_reduction_ratio
     assert 0.0 <= ratio <= 1.0
+
+
+def test_a_repeated_child_is_returned_once(indexed):
+    """A child that was retrieved twice appears once in the results."""
+    store, model = indexed
+    strategy = build_strategy(store, model)
+
+    response = strategy.retrieve("api keys are rotated")
+
+    ids = [result.chunk_id for result in response.results]
+    assert len(ids) == len(set(ids))
+
+
+def test_the_results_are_deduplicated(indexed, monkeypatch):
+    """A duplicated child keeps its best score and appears once."""
+    from retrieval.strategies.hierarchical.child import ChildStage, ChildStageResult
+
+    store, model = indexed
+    strategy = build_strategy(store, model)
+
+    original = ChildStage.search
+
+    def duplicate(self, vector, parent_ids, **kwargs):
+        results = original(self, vector, parent_ids, **kwargs)
+        if not results:
+            return results
+        first = results[0]
+        # The same child is returned a second time, with a lower score.
+        return results + [
+            ChildStageResult(
+                chunk_id=first.chunk_id,
+                doc_id=first.doc_id,
+                text=first.text,
+                score=first.score - 0.5,
+                rank=first.rank,
+                parent_id=first.parent_id,
+                metadata=first.metadata,
+                provenance=first.provenance,
+            )
+        ]
+
+    monkeypatch.setattr(ChildStage, "search", duplicate)
+    response = strategy.retrieve("api keys are rotated")
+
+    ids = [result.chunk_id for result in response.results]
+    assert len(ids) == len(set(ids))
+    assert any("retrieved more than once" in note for note in response.diagnostics.notes)
 
 
 def test_the_score_threshold_is_applied(indexed):

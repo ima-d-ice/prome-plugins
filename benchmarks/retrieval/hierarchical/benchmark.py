@@ -43,8 +43,6 @@ from benchmarks.retrieval.hierarchical.evaluate import (
     FlatChildSearch,
     HierarchicalSearch,
     ParentOnlySearch,
-    build_corpus,
-    to_parsed_document,
 )
 from benchmarks.retrieval.hierarchical.metrics import percentile
 from chunkers.hierarchical.chunker import HierarchicalChunker
@@ -62,8 +60,6 @@ from retrieval.strategies.hierarchical import (
     HierarchicalIndexer,
     HierarchicalRetrievalStrategy,
 )
-from retrieval.strategies.hierarchical.metadata import CHUNK_LEVEL_FIELD
-from vector_stores.contracts.filters import eq
 
 
 class SeededEmbeddingModel:

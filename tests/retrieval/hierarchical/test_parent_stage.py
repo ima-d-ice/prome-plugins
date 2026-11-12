@@ -7,7 +7,6 @@ import pytest
 from retrieval.contracts.exceptions import RetrievalConfigError
 from retrieval.dense import DenseRetriever
 from retrieval.strategies.hierarchical import (
-    HierarchicalConfig,
     HierarchicalIndexer,
     ParentStage,
     parent_filter,

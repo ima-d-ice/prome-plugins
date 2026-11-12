@@ -198,6 +198,88 @@ See `vector_stores/README.md` for the contracts,
 `benchmarks/vector_stores/` for the benchmark harness
 (`python benchmarks/vector_stores/benchmark.py --backend lancedb`).
 
+## Retrieval
+
+Retrieval turns a query into ranked passages. The retrieval layer reuses the
+contracts above and never duplicates them: a chunk keeps its identity from
+`chunkers`, the embeddings come from an injected `EmbeddingModel`, and the
+storage and the search come from the `VectorStore` protocol. Nothing in the
+retrieval package loads a model or downloads weights.
+
+Two strategies are implemented and both expose the same standardized result
+interface:
+
+* **Hybrid** — dense semantic retrieval (Qwen3-Embedding-0.6B) fused with
+  BM25 lexical retrieval (SQLite FTS5) through Reciprocal Rank Fusion.
+  This is the general-purpose strategy; use it when queries mix
+  natural-language questions with exact identifiers, error codes or API
+  names.
+* **Hierarchical** — a coarse-to-fine strategy that first selects the
+  parent *sections* that look relevant, then retrieves the evidence
+  *children* inside those sections only.
+
+```python
+from embeddings.qwen3 import Qwen3EmbeddingModel
+from retrieval.strategies.hybrid import HybridRetrievalStrategy
+from retrieval.lexical.bm25.sqlite_fts5 import SQLiteFTS5Index, BM25Retriever
+from retrieval.dense.qwen import QwenDenseRetriever
+from vector_stores.qdrant import QdrantVectorStore
+
+model = Qwen3EmbeddingModel()
+store = QdrantVectorStore.local("/tmp/qdrant")
+# (index the corpus into `store` and into the lexical index first)
+
+index = SQLiteFTS5Index("/tmp/lexical.db").open()
+dense = QwenDenseRetriever(store, model, collection="docs")
+lexical = BM25Retriever(index)
+strategy = HybridRetrievalStrategy(dense, lexical)
+
+for result in strategy.retrieve("how are the signing keys rotated?").results:
+    print(result.rank, result.text)
+```
+
+The hybrid engine keeps the two channels independent: each one applies the
+same metadata filter to its own candidates, and a channel failure is reported
+loudly (strict by default) rather than hidden.
+
+```python
+from embeddings.qwen3 import Qwen3EmbeddingModel
+from retrieval.strategies.hierarchical import (
+    HierarchicalConfig, HierarchicalIndexer, HierarchicalRetrievalStrategy,
+)
+from chunkers.hierarchical import HierarchicalChunker, HierarchicalConfig as ChunkerConfig
+from vector_stores.qdrant import QdrantVectorStore
+
+model = Qwen3EmbeddingModel()
+store = QdrantVectorStore.local("/tmp/qdrant")
+
+# Index both levels of the hierarchy.
+indexer = HierarchicalIndexer(store, model, collection="docs")
+indexer.ensure_collection()
+chunker = HierarchicalChunker(ChunkerConfig(parent_size=2000, child_size=500))
+indexer.index_result(chunker.chunk(document))
+
+# Retrieve.
+strategy = HierarchicalRetrievalStrategy.create(
+    store, model, collection="docs",
+    config=HierarchicalConfig(parent_top_k=8, child_top_k=40, final_top_k=10),
+)
+for result in strategy.retrieve("how are the signing keys rotated?").results:
+    print(result.rank, result.text)              # the evidence (a child chunk)
+    print(result.parent_context.text)           # the section it sits in
+```
+
+Both levels live in the same collection and the same named dense vector
+space; the `chunk_level` metadata field tells them apart. The result keeps
+the evidence (the matched child) and the context (the parent section and,
+optionally, the neighbouring children) apart, so a parent is never returned
+as if it were a precise match.
+
+See `retrieval/README.md` for the full contracts,
+`benchmarks/retrieval/hybrid/` for the hybrid evaluation and benchmark
+harnesses, and `benchmarks/retrieval/hierarchical/` for the hierarchical
+evaluation and benchmark harnesses.
+
 ## Layout
 
 ```text
@@ -255,14 +337,32 @@ parsers/
     ├── lancedb/            # LanceDB adapter (embedded local, IVF indexes)
     ├── faiss/              # FAISS adapter (dense vectors + SQLite records)
     └── pgvector/           # PostgreSQL adapter (pgvector, HNSW/IVFFlat, sparsevec)
+└── retrieval/
+    ├── contracts/          # shared RetrievalQuery/RetrievedItem/Response/Diagnostics
+    │                       # and the Retriever protocol + capabilities
+    ├── dense/              # DenseRetriever: embed + filtered search, capabilities checked
+    │   └── qwen/           # Qwen3-Embedding-0.6B production channel
+    ├── lexical/bm25/sqlite_fts5/   # BM25 over a SQLite FTS5 index
+    ├── fusion/rrf/         # Reciprocal Rank Fusion (default k=60)
+    ├── strategies/
+    │   ├── hybrid/         # dense + BM25, fused with RRF (general purpose)
+    │   └── hierarchical/   # coarse-to-fine: select parent sections, then the
+    │                       # evidence children inside them
+    ├── postprocessing/
+    │   ├── deduplication/  # merge repeated chunk ids, keep best-ranked
+    │   ├── adjacent_merge/ # merge adjacent chunks (configurable)
+    │   └── context_expansion/  # attach the parent section and the neighbours
+    └── indexing/           # coordinator: writes the same chunks into both indexes
 
 tests/parsers/              # per-family pytest suites
 tests/chunkers/             # chunker pytest suites + fixture integration tests
 tests/embeddings/           # embedding contract + adapter suites
 tests/vector_stores/        # vector-store contract + Qdrant adapter suites
+tests/retrieval/            # retrieval contract + hierarchical strategy suites
 benchmarks/parsers/         # per-family fixture corpora, runners, reports
 benchmarks/chunkers/        # shared chunker comparison harness + reports
 benchmarks/vector_stores/   # vector-store search/upsert harness + reports
+benchmarks/retrieval/       # hierarchical retrieval evaluation + benchmark harness
 ```
 
 ## Capability matrix
@@ -349,6 +449,12 @@ python benchmarks/vector_stores/benchmark.py --backend qdrant  --mode memory
 python benchmarks/vector_stores/benchmark.py --backend lancedb --mode local
 python benchmarks/vector_stores/benchmark.py --backend faiss    --mode local
 python benchmarks/vector_stores/benchmark.py --backend pgvector --mode server
+python benchmarks/retrieval/hybrid/evaluate.py                 # hybrid quality
+python benchmarks/retrieval/hybrid/evaluate.py --embedding qwen
+python benchmarks/retrieval/hybrid/benchmark.py                  # hybrid performance
+python benchmarks/retrieval/hierarchical/evaluate.py             # hierarchical quality
+python benchmarks/retrieval/hierarchical/evaluate.py --embedding qwen
+python benchmarks/retrieval/hierarchical/benchmark.py             # hierarchical performance
 ```
 
 Unsupported capabilities are reported as N/A (not 0); parsers that fail a
@@ -418,9 +524,19 @@ not production baselines.
 - OCR parsers for PDFs (`parsers/pdf/ocr/`) are not implemented.
 - **PaddleOCR is not installed or benchmarked** in this environment; its parser
   exists and is covered by tests that skip without the dependency.
-- No retrieval, reranking, generation, API server, database or frontend.
-  Chunking, embedding models and the vector store are provided; nothing
-  consumes them yet.
+- No reranking, generation, API server, database or frontend. Chunking,
+  embedding models, the vector store and the retrieval strategies are
+  provided; nothing consumes them yet.
+- Retrieval: the **hybrid** (dense + BM25 fused with RRF) and **hierarchical**
+  (coarse-to-fine) strategies are implemented and evaluated. A lexical arm
+  (BM25) and a fusion step (RRF) are provided by the hybrid engine; the
+  hierarchical strategy remains dense-only in this milestone. The hierarchy is
+  deliberately one level deep (parent/child), not an arbitrary-depth tree, and
+  the context expansion never summarizes or rewrites the source text.
+  The hybrid engine writes the same chunks into the dense index (vector store)
+  and the lexical index (SQLite FTS5); there is no distributed transaction
+  between the two, so the coordinator reports per-backend failures and can
+  reconcile the lexical side.
 - Vector stores: Qdrant, LanceDB, FAISS and pgvector are implemented. IVF,
   PQ, scalar / binary quantization and custom ANN algorithms are not
   implemented everywhere; BM25 and full-text retrieval are out of scope

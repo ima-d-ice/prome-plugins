@@ -453,3 +453,174 @@ Benchmarks (deterministic corpus, 3000 records x 128 dims, 100 queries):
   shared conformance suite. BM25 / full-text retrieval belongs to a later lexical
   retrieval layer; the FAISS suite must be run on its own (OpenMP conflict with
   torch, see Phase 12).
+
+## Phase 13 — Retrieval: hierarchical (coarse-to-fine) retrieval (DONE)
+
+Adds the retrieval ecosystem and its first strategy. IMPORTANT: the Phase 1
+retrieval milestone described in the task brief (shared retrieval contracts,
+dense retriever, BM25, RRF, hybrid, indexing coordination, deduplication,
+adjacent merging) was **not present in this repository** — the tree contained
+only `parsers/`, `chunkers/`, `embeddings/` and `vector_stores/`, and the root
+README still stated "No retrieval ... nothing consumes them yet". The shared
+foundation the hierarchical strategy needs was therefore built here, and the
+shared result contract was designed so that a later hybrid/BM25/RRF milestone
+can plug into it without changing the callers. BM25, RRF and the hybrid
+strategy were deliberately NOT implemented (the brief puts them out of scope
+for this milestone).
+
+- `retrieval/contracts/`: the shared result contract —
+  `RetrievalResult` (evidence + optional context), `RetrievalContext` /
+  `ContextChunk`, `RetrievalResponse`, `RetrievalDiagnostics` and the
+  `RetrievalStrategy` protocol. The evidence (the matched chunk) and the
+  context (parent section, neighbours) are separate fields, so a caller can
+  never confuse them.
+- `retrieval/dense/`: `DenseRetriever` — embeds the query with the *injected*
+  model and runs a filtered vector search. It checks the backend's
+  `StoreCapabilities` **before** searching (unsupported filter operations and
+  undeclared fields on fixed-schema backends raise
+  `UnsupportedRetrievalCapabilityError`), verifies that the model and the
+  collection share an embedding space, and applies the score threshold itself
+  so the meaning of a threshold does not depend on the backend.
+- `retrieval/strategies/hierarchical/`:
+  - `HierarchicalIndexer` — embeds parents and children **independently** with
+    the same encoder and writes both into the same collection and the same
+    named dense vector space. Idempotent (re-indexing replaces), preserves the
+    chunk ids, the relationship and the provenance, and refuses to link a
+    parent and a child of different documents. The relationship is written
+    into the record metadata (`parent_id` on a child, `child_ids` /
+    `child_count` on a parent), so it survives a restart of the store.
+  - `ParentStage` — the coarse stage. Searches only `chunk_level == "parent"`.
+  - `ChildStage` — the fine stage. Searches only
+    `chunk_level == "child" AND parent_id IN (selected parents)`, so the
+    restriction is applied by the backend and never widened silently.
+  - `HierarchicalRetrievalStrategy` — runs the two stages in order, embeds the
+    query **once**, deduplicates, expands the context and produces the
+    standardized results.
+- `retrieval/postprocessing/context_expansion/`: attaches the parent section
+  and, optionally, the neighbouring children of the same parent. It never
+  rewrites or summarizes the source text, never repeats a chunk and never
+  crosses the parent boundary.
+- The hierarchy metadata contract (`metadata.py`) projects the relationship
+  the hierarchical chunker already writes into the chunk metadata
+  (`level`, `parent_id`, `child_ids`, `child_count`, `child_index`) into the
+  filterable record metadata. The chunker's algorithm and its metadata were
+  **not** modified.
+- `embeddings/deterministic.py` was **restored**: it is documented in the root
+  README, in `chunkers/README.md` and in `chunkers/semantic/README.md` and it
+  is imported by `benchmarks/chunkers/benchmark.py`, but the module was
+  missing from the tree, which broke that benchmark. It is a dependency-free
+  hashed bag-of-words double for tests and algorithm benchmarks — not a
+  production encoder and not a semantic model.
+
+Test results:
+- `pytest tests/retrieval` — **65 passed** (parent stage, child stage, the
+  full strategy, context expansion, persistence, edge cases) plus **2 passed**
+  with the real Qwen3-Embedding-0.6B weights (`test_integration_qwen.py`).
+  The Qwen integration test skips cleanly when `sentence-transformers` or the
+  weights are absent.
+- `pytest tests/chunkers tests/embeddings tests/retrieval` — **566 passed**.
+- `pytest tests/vector_stores` (without faiss) — **192 passed, 63 skipped**
+  (the skips are the server-only tests; no Qdrant server is reachable here).
+- `pytest tests/vector_stores/faiss` (on its own) — **57 passed, 1 skipped**.
+- `pytest tests/parsers` — **337 passed, 5 skipped**.
+- No pre-existing test was changed or removed.
+
+Evaluation (labeled corpus of 3 documents / 16 parents / 44 children /
+13 queries, `benchmarks/retrieval/hierarchical/evaluate.py`):
+- With the **real Qwen3** encoder: `flat` R@1 0.731 / R@5 0.923 / MRR 0.897 /
+  nDCG@10 0.901; `parent` R@1 0.846 / R@5 1.000 / MRR 0.949 / nDCG@10 0.962;
+  `hierarchical` R@1 0.731 / R@5 0.923 / MRR 0.897 / nDCG@10 0.901 — i.e. the
+  hierarchy **matched** the flat search on the evidence metrics while the
+  fine stage scored **54.2 %** fewer candidates. The coarse stage alone was
+  the best system on this corpus, which is reported as measured.
+- With the deterministic double: flat and hierarchical again agree exactly
+  (R@1 0.577 / R@5 0.769 / MRR 0.777), with 46.0 % fewer candidates. The
+  deterministic model is lexical, so these numbers describe the architecture,
+  not the semantic quality of an encoder.
+
+Benchmark (deterministic synthetic corpus, 100 documents / 12 600 records,
+Qdrant in-memory, 100 queries): indexing 1 666 records/s; query latency
+p50/p95 — flat 59.4/62.1 ms, parent 58.8/61.6 ms, hierarchical 192.6/214.0 ms;
+candidate reduction 99.8 % of the child records. The hierarchical strategy
+performs **two** filtered scans where the flat search performs one, and the
+in-process Qdrant modes evaluate a payload filter with a full scan, so the
+latency is roughly doubled. This is a property of those modes, not of the
+strategy; it is reported as measured.
+
+## Phase 14 — Retrieval: hybrid engine (DONE)
+
+Adds the hybrid retrieval engine: dense semantic retrieval (Qwen3-Embedding-0.6B)
+fused with BM25 lexical retrieval (SQLite FTS5) through Reciprocal Rank Fusion.
+
+- `retrieval/contracts/`: extended. Adds `RetrievalQuery`, `RetrievedItem`
+  (canonical name; `RetrievalResult` kept as a backwards-compatible alias),
+  `RetrievalResponse` (ordered results, query, strategy, diagnostics, timings),
+  `Retriever` (canonical protocol name; `RetrievalStrategy` kept as an alias),
+  `RetrievalCapabilities`. `RetrievalDiagnostics` now records per-channel
+  candidate counts, channel failures and the fused score scale.
+- `retrieval/dense/qwen/`: `QwenDenseRetriever` — the production dense
+  channel. It binds the generic dense retriever to the Qwen encoder, validates
+  that the injected model matches the collection's embedding space, and checks
+  the backend's filter capabilities before searching.
+- `retrieval/lexical/bm25/sqlite_fts5/`: the BM25 channel. The index is a
+  relational content table plus an FTS5 virtual table kept in sync by SQLite
+  triggers (external content mode). The FTS5 tokenizer is `unicode61` with
+  `tokenchars '_'`, so identifiers such as `get_user_id` survive as one token.
+  The index is persistent, supports upsert/delete/delete-by-document, a MATCH
+  expression built from the query, metadata filtering through the same AST as
+  the dense channel (translated to SQL with bound parameters), and an integrity
+  check that covers every content row.
+- `retrieval/fusion/rrf/`: Reciprocal Rank Fusion, default `k=60`. Only ranks
+  are used, so the dense and BM25 score scales are never compared. Per-channel
+  ranks and scores are recorded; the tie-break is deterministic (score desc,
+  then chunk id asc). Channel weights are supported.
+- `retrieval/postprocessing/deduplication/`: keeps one entry per chunk id,
+  preserves the channel that found it, keeps the best-ranked occurrence.
+- `retrieval/postprocessing/adjacent_merge/`: optional merge of consecutive
+  chunks of the same document. Configurable size limit; never crosses the
+  document boundary; preserves the evidence reference and the contributing
+  chunk ids.
+- `retrieval/indexing/coordinator.py`: writes the same chunks into both indexes.
+  Reports per-backend success and failure (`partial`); offers
+  `reconcile_lexical()` to retry the lexical side after a failure. Never loads
+  an embedding model itself.
+- `retrieval/strategies/hybrid/`: the orchestration. Strict by default — a
+  failing channel makes the whole retrieval fail. `"partial"` policy available
+  explicitly.
+- `embeddings/deterministic.py`: unchanged from Phase 13.
+
+Test results:
+- `pytest tests/retrieval` — **190 passed** (contracts, dense, BM25, RRF,
+  dedup, adjacent merge, hybrid strategy, indexing coordinator, integration
+  with the real Qwen3 encoder, FTS5 index). Two Qwen integration tests pass
+  when sentence-transformers and the cached weights are usable; otherwise they
+  skip.
+- `pytest tests/` — **1220 passed, 68 skipped**.
+- `pytest tests/vector_stores/faiss` (isolated) — **57 passed, 1 skipped**.
+
+Evaluation (`benchmarks/retrieval/hybrid/evaluate.py`):
+- Real Qwen3-Embedding-0.6B, 18 queries over 9 chunks:
+  - dense: 0.833 R@1 / 0.889 R@3 / 1.000 R@5 / 1.000 R@10 / MRR 0.880
+  - bm25: 0.444 R@1 / 0.444 R@3 / 0.444 R@5 / 0.444 R@10 / MRR 0.444
+  - hybrid: **1.000 on every metric** / MRR 1.000
+- The deterministic double (hashed bag-of-words) gives dense and hybrid the
+  same scores (0.722 R@1 / 0.889 R@3 / 1.000 R@10 / MRR 0.821), because the
+  double is itself lexical.
+- The corpus is 3 documents and 18 queries: the numbers are suggestive, not
+  statistically significant. The hybrid win with Qwen is consistent with the
+  per-query breakdown (dense nails the paraphrase queries, BM25 nails the
+  exact-identifier queries, hybrid gets all of them).
+
+Benchmark (synthetic corpus, Qdrant memory, 50/100/200 documents):
+- indexing throughput: ~6 900 records/s
+- query latency p50/p95 — dense 0.69/0.84 ms, bm25 0.09/0.17 ms,
+  hybrid 0.79/0.94 ms (50 documents); scales linearly with the corpus size.
+
+
+## Outstanding / next steps (updated)
+
+- Retrieval: the hybrid engine is the general-purpose dense+lexical baseline.
+  The hierarchical strategy remains dense-only. A lexical arm for the
+  hierarchical strategy is the natural next step.
+- pgvector and LanceDB not yet tested for the hybrid engine; the FAISS suite
+  runs on its own (OpenMP conflict with torch).

@@ -173,6 +173,24 @@ def test_the_adjacent_expansion_stays_inside_the_parent(hierarchy):
     assert all(item.chunk_id != "x0" for item in expanded.adjacent)
 
 
+def test_the_adjacent_expansion_stays_inside_the_document(hierarchy):
+    """A chunk of another document is never attached."""
+    parent_chunk, children = hierarchy
+    foreign = child("f0", "p0", 0, "a chunk of another document")
+    foreign.doc_id = "other.md"
+    expander = ContextExpander(
+        parents={"p0": parent_chunk},
+        children={c.id: c for c in children} | {"f0": foreign},
+    )
+
+    expanded = expander.expand(
+        children[1], config=ContextExpansionConfig(include_adjacent=True, max_adjacent=5)
+    )
+
+    assert all(item.doc_id == "doc.md" for item in expanded.adjacent)
+    assert all(item.chunk_id != "f0" for item in expanded.adjacent)
+
+
 def test_the_adjacent_expansion_never_returns_the_evidence(hierarchy):
     """The matched child is not attached as its own neighbour."""
     parent_chunk, children = hierarchy

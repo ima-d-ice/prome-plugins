@@ -19,12 +19,13 @@ from dataclasses import dataclass
 
 from chunkers.contracts.models import Chunk
 from embeddings.contracts.protocols import EmbeddingModel
+from retrieval.contracts.capabilities import RetrievalCapabilities
 from retrieval.contracts.exceptions import RetrievalConfigError
 from retrieval.contracts.models import (
     ContextChunk,
     RetrievalDiagnostics,
     RetrievalResponse,
-    RetrievalResult,
+    RetrievedItem,
 )
 from retrieval.dense.retriever import DenseRetriever
 from retrieval.postprocessing.context_expansion.expander import (
@@ -52,6 +53,32 @@ class HierarchicalRetrievalStrategy:
     config: HierarchicalConfig = HierarchicalConfig()
 
     name = "hierarchical"
+
+    # ------------------------------------------------------------------
+    @property
+    def capabilities(self) -> RetrievalCapabilities:
+        """Return what the strategy can do."""
+        store_capabilities = self.retriever.capabilities
+        postprocessing = {"deduplication"}
+        if self.config.include_parent_context:
+            postprocessing.add("context_expansion")
+        if self.config.expand_adjacent:
+            postprocessing.add("adjacent_merge")
+        return RetrievalCapabilities(
+            dense=True,
+            lexical=False,
+            fusion=False,
+            metadata_filtering=store_capabilities.dense_search,
+            filter_ops=store_capabilities.filter_ops,
+            postprocessing=frozenset(postprocessing),
+            details={
+                "backend": store_capabilities.backend,
+                "collection": self.retriever.collection,
+                "vector_space": self.retriever.space,
+                "parent_top_k": self.config.parent_top_k,
+                "child_top_k": self.config.child_top_k,
+            },
+        )
 
     # ------------------------------------------------------------------
     @classmethod
@@ -123,6 +150,7 @@ class HierarchicalRetrievalStrategy:
 
         children = self.child_stage.search(query_vector, parent_ids)
         notes.extend(self._integrity_notes(parents, children))
+        children = self._deduplicate(children, notes)
 
         results = self._build_results(parents, children, notes)
 
@@ -152,7 +180,7 @@ class HierarchicalRetrievalStrategy:
         parents: list[ParentStageResult],
         children: list[ChildStageResult],
         notes: list[str],
-    ) -> list[RetrievalResult]:
+    ) -> list[RetrievedItem]:
         """Turn the stage results into the standardized results."""
         parents_by_id = {parent.chunk_id: parent for parent in parents}
         expander = self._expander(parents, children, notes)
@@ -162,7 +190,7 @@ class HierarchicalRetrievalStrategy:
             max_adjacent=self.config.max_adjacent,
         )
 
-        results: list[RetrievalResult] = []
+        results: list[RetrievedItem] = []
         for rank, child in enumerate(children[: self.config.final_top_k], start=1):
             parent = parents_by_id.get(child.parent_id)
             context: list[ContextChunk] = []
@@ -193,7 +221,7 @@ class HierarchicalRetrievalStrategy:
                 metadata["heading_path"] = list(parent.heading_path)
 
             results.append(
-                RetrievalResult(
+                RetrievedItem(
                     chunk_id=child.chunk_id,
                     doc_id=child.doc_id,
                     text=child.text,
@@ -219,6 +247,10 @@ class HierarchicalRetrievalStrategy:
         part of the fine-stage answer, and the expansion must not invent
         content.
         """
+        # The children of the selected parents, in the order the parent
+        # declares them.  Only the parents that actually produced a hit are
+        # expanded, so a wide parent selection does not turn into a wide
+        # fetch.
         parent_records: dict[str, Chunk] = {}
         parent_ids = [parent.chunk_id for parent in parents]
         if parent_ids:
@@ -227,12 +259,12 @@ class HierarchicalRetrievalStrategy:
             ):
                 parent_records[record.chunk.id] = record.chunk
 
-        # The children of the selected parents, in the order the parent
-        # declares them.
+        matched_parent_ids = {child.parent_id for child in children}
         child_records: dict[str, Chunk] = {}
         wanted: list[str] = []
         for parent in parents:
-            wanted.extend(parent.child_ids)
+            if parent.chunk_id in matched_parent_ids:
+                wanted.extend(parent.child_ids)
         if wanted:
             for record in self.retriever.store.get(self.retriever.collection, wanted):
                 child_records[record.chunk.id] = record.chunk
@@ -254,6 +286,28 @@ class HierarchicalRetrievalStrategy:
                 ),
             )
         return ContextExpander(parents=parent_records, children=child_records)
+
+    @staticmethod
+    def _deduplicate(
+        children: list[ChildStageResult], notes: list[str]
+    ) -> list[ChildStageResult]:
+        """Remove the repeated children, keeping the best scoring one.
+
+        A chunk that was returned twice keeps its highest score, and the
+        order of the remaining chunks is preserved.
+        """
+        best: dict[str, ChildStageResult] = {}
+        order: list[str] = []
+        for child in children:
+            existing = best.get(child.chunk_id)
+            if existing is None:
+                best[child.chunk_id] = child
+                order.append(child.chunk_id)
+                continue
+            notes.append(f"the child {child.chunk_id!r} was retrieved more than once")
+            if child.score > existing.score:
+                best[child.chunk_id] = child
+        return [best[chunk_id] for chunk_id in order]
 
     @staticmethod
     def _integrity_notes(

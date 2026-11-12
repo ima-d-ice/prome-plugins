@@ -32,6 +32,11 @@ from retrieval.contracts.exceptions import (
     RetrievalConfigError,
     UnsupportedRetrievalCapabilityError,
 )
+from retrieval.contracts.models import (
+    RetrievedItem,
+    RetrievalQuery,
+    RetrievalResponse,
+)
 from vector_stores.contracts.capabilities import StoreCapabilities
 from vector_stores.contracts.filters import FIELD_OPS, FilterOp, MetadataFilter
 from vector_stores.contracts.indexes import IndexKind
@@ -43,9 +48,7 @@ from vector_stores.contracts.models import (
     VectorSpaceConfig,
 )
 from vector_stores.contracts.protocols import VectorStore
-from vector_stores.contracts.validation import (
-    embedding_space_mismatch_reasons,
-)
+from vector_stores.contracts.validation import embedding_space_mismatch_reasons
 
 
 def required_filter_ops(node: MetadataFilter | None) -> set[FilterOp]:
@@ -89,6 +92,8 @@ class DenseRetriever:
         space: name of the vector space to search.
     """
 
+    name = "dense"
+
     def __init__(
         self,
         store: VectorStore,
@@ -107,7 +112,7 @@ class DenseRetriever:
     # capabilities
     # ------------------------------------------------------------------
     @property
-    def capabilities(self) -> StoreCapabilities:
+    def store_capabilities(self) -> StoreCapabilities:
         """Return the capabilities of the backing store."""
         return self.store.capabilities
 
@@ -138,7 +143,7 @@ class DenseRetriever:
         """
         if filter is None:
             return
-        capabilities = self.capabilities
+        capabilities = self.store_capabilities
         missing = required_filter_ops(filter) - set(capabilities.filter_ops)
         if missing:
             raise UnsupportedRetrievalCapabilityError(
@@ -148,11 +153,13 @@ class DenseRetriever:
             )
         if not capabilities.filter_requires_declared_fields:
             return
+        # The chunk id and the document id are first-class columns of every
+        # backend; they are not payload fields and never need a declaration.
         declared = {
             index.target
             for index in self.collection_info().indexes
             if index.kind is IndexKind.PAYLOAD
-        }
+        } | {"chunk_id", "doc_id"}
         undeclared = filter_fields(filter) - declared
         if undeclared:
             raise UnsupportedRetrievalCapabilityError(
@@ -266,3 +273,50 @@ class DenseRetriever:
         if direction is ScoreDirection.LOWER_IS_BETTER:
             return result.score <= threshold
         return result.score >= threshold
+
+    # ------------------------------------------------------------------
+    # retrieval
+    # ------------------------------------------------------------------
+    def retrieve(self, query: RetrievalQuery) -> RetrievalResponse:
+        """Retrieve the passages that answer ``query``."""
+        vector = self.embed_query(query.text)
+        hits = self.search(
+            vector,
+            limit=query.effective_dense_limit,
+            filter=query.filters,
+        )
+        return RetrievalResponse(
+            results=[self.to_item(hit, rank) for rank, hit in enumerate(hits, start=1)],
+            query=query,
+            strategy=self.name,
+        )
+
+    def to_item(self, hit: SearchResult, rank: int) -> RetrievedItem:
+        """Convert a backend hit into a standardized item.
+
+        The score is kept in the scale of the backend and its direction is
+        recorded, because a cosine similarity is not comparable with a BM25
+        score.
+        """
+        return RetrievedItem(
+            chunk_id=hit.chunk_id,
+            doc_id=hit.doc_id,
+            text=hit.text or "",
+            score=hit.score,
+            score_direction=hit.score_direction or ScoreDirection.HIGHER_IS_BETTER,
+            score_interpretation=self.score_interpretation,
+            rank=rank,
+            strategy=self.name,
+            metadata=dict(hit.metadata or {}),
+            provenance=hit.provenance,
+            methods=(self.name,),
+            channel_ranks={self.name: rank},
+            channel_scores={self.name: hit.score},
+        )
+
+    @property
+    def score_interpretation(self) -> str:
+        """Return what the score of this retriever means."""
+        space = self.space_config()
+        metric = space.distance
+        return metric.value if metric is not None else "cosine"

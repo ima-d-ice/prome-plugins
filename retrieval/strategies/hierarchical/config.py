@@ -7,7 +7,7 @@ differences are handled by the vector-store contracts, not by this class.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 from retrieval.contracts.exceptions import RetrievalConfigError
 from vector_stores.contracts.filters import MetadataFilter

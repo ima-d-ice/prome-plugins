@@ -62,7 +62,6 @@ from retrieval.strategies.hierarchical import (
 )
 from retrieval.strategies.hierarchical.metadata import CHUNK_LEVEL_FIELD
 from vector_stores.contracts.filters import eq
-from vector_stores.contracts.models import SearchRequest
 from vector_stores.contracts.protocols import VectorStore
 
 

@@ -150,10 +150,14 @@ class ContextExpander:
         )
         selected: list[ContextChunk] = []
         seen_text = {self._text(child)}
+        evidence_document = self._document_id(child)
         for _, index in candidates:
             if len(selected) >= settings.max_adjacent:
                 break
             neighbour = ordered[index]
+            # The expansion never leaves the document of the evidence.
+            if evidence_document and self._document_id(neighbour) != evidence_document:
+                continue
             text = self._text(neighbour)
             if not text or text in seen_text:
                 # Never repeat the same content twice.
@@ -208,6 +212,10 @@ class ContextExpander:
     @staticmethod
     def _text(record: Any) -> str:
         return str(getattr(record, "text", "") or "")
+
+    @staticmethod
+    def _document_id(record: Any) -> str:
+        return str(getattr(record, "doc_id", "") or "")
 
     @staticmethod
     def _parent_id(record: Any) -> str | None:

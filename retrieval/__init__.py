@@ -10,18 +10,20 @@ existing Prome contracts and never duplicates them:
 - :class:`vector_stores.contracts.protocols.VectorStore` for the storage and
   the search.
 
-The strategies share one result contract, so a dense search and a
-hierarchical search can be swapped for one another downstream.
+The strategies share one result contract, so a dense search, a lexical
+search and a hybrid search can be swapped for one another downstream.
 """
 
 from retrieval.contracts import (
     ContextChunk,
+    RetrievalCapabilities,
     RetrievalConfigError,
     RetrievalDiagnostics,
     RetrievalError,
+    RetrievalQuery,
     RetrievalResponse,
-    RetrievalResult,
-    RetrievalStrategy,
+    RetrievedItem,
+    Retriever,
     UnsupportedRetrievalCapabilityError,
 )
 from retrieval.dense import DenseRetriever
@@ -29,11 +31,13 @@ from retrieval.dense import DenseRetriever
 __all__ = [
     "ContextChunk",
     "DenseRetriever",
+    "RetrievalCapabilities",
     "RetrievalConfigError",
     "RetrievalDiagnostics",
     "RetrievalError",
+    "RetrievalQuery",
     "RetrievalResponse",
-    "RetrievalResult",
-    "RetrievalStrategy",
+    "RetrievedItem",
+    "Retriever",
     "UnsupportedRetrievalCapabilityError",
 ]

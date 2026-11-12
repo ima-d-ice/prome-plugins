@@ -118,8 +118,15 @@ all = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*"]
+include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*", "retrieval*"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+
+
+[project.optional-dependencies]
+reranking-qwen3 = [
+    "sentence-transformers",
+    "torch",
+]

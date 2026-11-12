@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import pytest
 
-from retrieval.dense import DenseRetriever
 from retrieval.strategies.hierarchical import (
     HierarchicalConfig,
     HierarchicalIndexer,
