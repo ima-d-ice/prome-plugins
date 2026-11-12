@@ -1,0 +1,33 @@
+From MAILER-DAEMON Thu Nov 12 02:14:19 2026
+From: sender1@example.com
+To: all@example.com
+Subject: Mbox Newsletter #1
+Message-ID: <mbox-msg-1@example.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Newsletter volume 1 body text.
+
+From MAILER-DAEMON Thu Nov 12 02:14:19 2026
+From: sender2@example.com
+To: all@example.com
+Subject: Mbox Newsletter #2
+Message-ID: <mbox-msg-2@example.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Newsletter volume 2 body text.
+
+From MAILER-DAEMON Thu Nov 12 02:14:19 2026
+From: sender3@example.com
+To: all@example.com
+Subject: Mbox Newsletter #3
+Message-ID: <mbox-msg-3@example.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Newsletter volume 3 body text.
+

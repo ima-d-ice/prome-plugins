@@ -1,0 +1,4 @@
+Product;Price;VatRate;InStock
+Hammer;15.99;0.20;true
+Nails (box);4.50;0.20;true
+Screwdriver;8.75;0.20;false

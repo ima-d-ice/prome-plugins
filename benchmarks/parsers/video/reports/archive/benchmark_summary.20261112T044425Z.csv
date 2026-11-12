@@ -1,0 +1,2 @@
+parser,status,success_rate,avg_quality_score,avg_latency_sec,throughput_docs_sec,notes
+ffmpeg_video,available,1.0,1.0,0.0128,78.18,interval(1s)+scene strategies

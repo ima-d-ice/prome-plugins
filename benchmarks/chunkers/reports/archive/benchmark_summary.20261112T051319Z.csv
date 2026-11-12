@@ -1,0 +1,4 @@
+chunker,fixtures_total,fixtures_succeeded,fixtures_failed,chunks_total,time_seconds_total,chunks_per_second_overall,coverage_mean,duplicate_char_rate_mean,length_chars_avg_mean,length_chars_max_mean,word_boundary_start_rate_mean,word_boundary_end_rate_mean,sections_intact_rate_mean,tables_intact_rate_mean,lists_intact_rate_mean,heading_context_rate_mean,block_ref_rate_mean,page_ref_rate_mean,refs_per_chunk_mean
+fixed,15,15,0,21,0.000233,90128.8,1.0,0.0224,397.0047,416.3333,1.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,5.5245
+recursive,15,15,0,20,0.00024,83333.3,1.0,0.0009,390.0447,410.5333,1.0,1.0,1.0,1.0,1.0,0.0,1.0,1.0,5.4222
+structure_aware,15,15,0,33,0.000341,96774.2,1.0,0.0,249.8173,322.2667,1.0,1.0,0.5185,1.0,1.0,1.0,1.0,1.0,3.6079

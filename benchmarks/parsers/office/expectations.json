@@ -1,0 +1,196 @@
+{
+  "simple_text.docx": {
+    "format": "docx",
+    "expected_text": [
+      "The quarter closed on a steady note.",
+      "Revenue grew eighteen percent year over year.",
+      "Hiring focused on infrastructure and support."
+    ],
+    "expected_metadata": {
+      "title": "Quarterly Operations Brief",
+      "author": "A. Example"
+    },
+    "expected_headings": [],
+    "expected_tables": 0
+  },
+  "headings.docx": {
+    "format": "docx",
+    "expected_text": [
+      "Prome Platform Overview",
+      "Architecture",
+      "Storage Layer",
+      "Indexing",
+      "Operations"
+    ],
+    "expected_headings": [
+      "Prome Platform Overview",
+      "Architecture",
+      "Storage Layer",
+      "Indexing",
+      "Operations"
+    ],
+    "expected_tables": 0
+  },
+  "nested_lists.docx": {
+    "format": "docx",
+    "expected_text": [
+      "Grocery list:",
+      "Apples",
+      "Bread",
+      "Almond flour",
+      "Eggs",
+      "Build steps:",
+      "Install dependencies",
+      "Run the test suite"
+    ],
+    "expected_headings": [],
+    "expected_tables": 0
+  },
+  "tables.docx": {
+    "format": "docx",
+    "expected_text": [
+      "Invoice Summary",
+      "Widget Pro",
+      "Gadget Mini",
+      "Enterprise"
+    ],
+    "expected_headings": [
+      "Invoice Summary"
+    ],
+    "expected_tables": 2
+  },
+  "images_captions.docx": {
+    "format": "docx",
+    "expected_text": [
+      "Figure Set",
+      "Figure 1: Quarterly growth chart."
+    ],
+    "expected_headings": [
+      "Figure Set"
+    ],
+    "expected_tables": 0
+  },
+  "headers_footers.docx": {
+    "format": "docx",
+    "expected_text": [
+      "Headered Document",
+      "Body content under the header."
+    ],
+    "expected_headings": [
+      "Headered Document"
+    ],
+    "expected_tables": 0
+  },
+  "sections.docx": {
+    "format": "docx",
+    "expected_text": [
+      "First Section",
+      "Content of the first section.",
+      "Second Section",
+      "Content of the second section."
+    ],
+    "expected_headings": [
+      "First Section",
+      "Second Section"
+    ],
+    "expected_tables": 0
+  },
+  "unicode.docx": {
+    "format": "docx",
+    "expected_text": [
+      "Unicode Showcase",
+      "Café au lait — naïve résumé.",
+      "日本語のテキストと中文文本。",
+      "Ελληνικά και Русский текст."
+    ],
+    "expected_headings": [
+      "Unicode Showcase"
+    ],
+    "expected_tables": 0
+  },
+  "hyperlinks.docx": {
+    "format": "docx",
+    "expected_text": [
+      "Reference List",
+      "Prome reference guide",
+      "End of references."
+    ],
+    "expected_headings": [
+      "Reference List"
+    ],
+    "expected_tables": 0
+  },
+  "multi_slide.pptx": {
+    "format": "pptx",
+    "expected_pages": 3,
+    "expected_text": [
+      "Launch Overview",
+      "We shipped the platform.",
+      "Adoption Metrics",
+      "Adoption doubled quarter over quarter.",
+      "Next Steps",
+      "Expand the parser coverage."
+    ],
+    "expected_headings": [
+      "Launch Overview",
+      "Adoption Metrics",
+      "Next Steps"
+    ],
+    "expected_tables": 0
+  },
+  "text_boxes.pptx": {
+    "format": "pptx",
+    "expected_pages": 1,
+    "expected_text": [
+      "Top level point",
+      "Nested bullet point",
+      "Second top level point"
+    ],
+    "expected_headings": [],
+    "expected_tables": 0
+  },
+  "table.pptx": {
+    "format": "pptx",
+    "expected_pages": 1,
+    "expected_text": [
+      "Region",
+      "Rep",
+      "Quota",
+      "North",
+      "Diaz",
+      "120000",
+      "South",
+      "Nguyen",
+      "95000"
+    ],
+    "expected_headings": [],
+    "expected_tables": 1
+  },
+  "images_notes.pptx": {
+    "format": "pptx",
+    "expected_pages": 1,
+    "expected_text": [
+      "Remind the audience about the roadmap."
+    ],
+    "expected_headings": [],
+    "expected_tables": 0
+  },
+  "shapes.pptx": {
+    "format": "pptx",
+    "expected_pages": 1,
+    "expected_text": [
+      "Shape callout text"
+    ],
+    "expected_headings": [],
+    "expected_tables": 0
+  },
+  "unicode.pptx": {
+    "format": "pptx",
+    "expected_pages": 1,
+    "expected_text": [
+      "Café — 日本語 — Ελληνικά"
+    ],
+    "expected_headings": [],
+    "expected_tables": 0
+  }
+}

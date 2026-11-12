@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Scripts and Styles Isolation</title>
+  <meta name="description" content="Scripts and styles must not leak into extracted text.">
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    .promo { color: #c00; font-size: 2rem; }
+    @media print { .no-print { display: none; } }
+  </style>
+  <script>
+    window.track = function () { return "trackingPixelBase64=="; };
+    var SECRET_ANALYTICS_TOKEN = "tok_should_never_appear_in_output";
+    console.log("booting analytics module");
+  </script>
+</head>
+<body>
+  <main>
+    <article>
+      <h1>Scripts and Styles Isolation</h1>
+      <p>Client-side scripts and CSS rules are not content. A correct parser excludes both from extracted text while keeping the visible prose fully intact and in the original order of appearance.</p>
+      <style>.inline-style-block { color: green; }</style>
+      <script src="https://cdn.example.com/analytics.js"></script>
+      <p>Styles and scripts may appear anywhere in the document. They carry no reading value, and leaking them into extracted text corrupts downstream chunking and embedding pipelines badly.</p>
+      <pre><code class="language-python">def cleanup(text):
+    return " ".join(text.split())</code></pre>
+      <noscript><p>This noscript fallback paragraph mentions noscript fallback text.</p></noscript>
+    </article>
+  </main>
+  <script>console.log("trailing script at end of body");</script>
+</body>
+</html>

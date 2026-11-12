@@ -1,0 +1,9 @@
+scenario,queries,records,batch_size,latency_mean_ms,latency_p50_ms,latency_p95_ms,latency_min_ms,latency_max_ms,recall_at_k,recall_at_k_min,top_k,seconds,records_per_second,bytes,bytes_per_vector,unsupported
+dense_exact,100,,,8.8046,8.2672,11.3277,7.7612,28.0948,,,,,,,,
+dense_approximate,100,,,1.5934,1.559,1.7005,1.5064,3.144,0.899,0.6,10,,,,,
+sparse,0,,,,,,,,,,,,,,,no sparse search
+multi_vector,0,,,,,,,,,,,,,,,no multi-vector search
+dense_filtered,100,,,3.8238,3.605,5.3093,3.3012,7.4396,,,,,,,,
+batch_upsert,,3000,256,,,,,,,,,2.6347,1138.64,,,
+index_build,,,,,,,,,,,,0.2766,,,,
+storage_footprint,,,,,,,,,,,,,,8566042,2855.35,

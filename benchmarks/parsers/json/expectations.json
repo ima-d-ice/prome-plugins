@@ -1,0 +1,17 @@
+{
+  "nested_object.json": {
+    "format": "json",
+    "expected_text": ["Prome Technologies", "San Francisco", "Engineering", "Alice"],
+    "expected_paths": ["$.company", "$.headquarters.city", "$.departments[0].name"]
+  },
+  "primitives.json": {
+    "format": "json",
+    "expected_text": ["Hello world", "1024", "3.14159", "Café"],
+    "expected_paths": ["$.text", "$.integer", "$.float", "$.unicode"]
+  },
+  "stream.ndjson": {
+    "format": "ndjson",
+    "expected_text": ["login", "query", "logout", "RAG parsers"],
+    "expected_paths": ["$[0].event", "$[1].query", "$[2].event"]
+  }
+}

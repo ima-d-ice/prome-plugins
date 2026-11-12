@@ -1,0 +1,56 @@
+{
+  "multi_sheet.xlsx": {
+    "format": "xlsx",
+    "expected_sheets": 2,
+    "expected_text": ["Alice", "Bob", "Marketing", "R&D"],
+    "expected_tables": 2
+  },
+  "data_types.xlsx": {
+    "format": "xlsx",
+    "expected_sheets": 1,
+    "expected_text": ["Alpha", "Beta", "Merged Cell Value"],
+    "expected_tables": 1
+  },
+  "merged_cells.xlsx": {
+    "format": "xlsx",
+    "expected_sheets": 1,
+    "expected_text": ["Executive Summary 2025", "Department", "Sales"],
+    "expected_tables": 1
+  },
+  "unicode.xlsx": {
+    "format": "xlsx",
+    "expected_sheets": 1,
+    "expected_text": ["Café au lait", "こんにちは世界", "Привет мир"],
+    "expected_tables": 1
+  },
+  "standard.csv": {
+    "format": "csv",
+    "expected_text": ["Alice Smith", "Bob Jones", "Carol White"],
+    "expected_tables": 1
+  },
+  "semicolon.csv": {
+    "format": "csv",
+    "expected_text": ["Hammer", "Nails", "Screwdriver"],
+    "expected_tables": 1
+  },
+  "pipe_delimited.csv": {
+    "format": "csv",
+    "expected_text": ["New York", "London", "Tokyo"],
+    "expected_tables": 1
+  },
+  "quoted_multiline.csv": {
+    "format": "csv",
+    "expected_text": ["Task A", "Task B", "second line with comma"],
+    "expected_tables": 1
+  },
+  "unicode.csv": {
+    "format": "csv",
+    "expected_text": ["Bonjour, café!", "こんにちは", "مرحبا"],
+    "expected_tables": 1
+  },
+  "large.csv": {
+    "format": "csv",
+    "expected_text": ["sensor_0", "sensor_1"],
+    "expected_tables": 1
+  }
+}

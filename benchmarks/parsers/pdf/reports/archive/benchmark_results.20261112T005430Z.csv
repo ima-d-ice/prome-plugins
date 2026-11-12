@@ -1,0 +1,37 @@
+parser,fixture,success,status,unsupported_capability,error,parser_version,bytes,sha256,pages_parsed,time_seconds_cold,time_seconds_best,time_seconds_mean,pages_per_second,page_coverage,text_coverage,structure_preservation,reading_order,heading_preservation,heading_hits,table_blocks,expected_tables,table_cell_coverage,table_header_coverage,multipage_table_continuity,table_text_duplication,image_detection,list_detection,quality_score,warnings
+pymupdf,simple_digital.pdf,True,ok,,,1.28.2,1461,5ec1dfad9c75f216a8f5389f7b4c34157586861e42a8c1292375a0707f3ad519,1,0.0104,0.0068,0.0068,146.569,1.0,1.0,1.0,1.0,1.0,1,0,0,,,,,,,1.0,
+pymupdf,multipage_structured.pdf,True,ok,,,1.28.2,2543,0198214d863011d2c467a1307e795ed6aceb72fc567449bb408cb066aa5046d8,3,0.014,0.0135,0.0135,222.803,1.0,1.0,1.0,1.0,1.0,3,0,0,,,,,,,1.0,
+pymupdf,tables.pdf,True,ok,,,1.28.2,3036,044b0fa245d72a9a99aa8e0bc986d422dd2d9e6906970c8dd0001778a5edf317,1,0.009,0.0061,0.0061,162.848,1.0,1.0,1.0,1.0,1.0,1,1,1,1.0,1.0,1.0,0.0,,,1.0,
+pymupdf,blank_page.pdf,True,ok,,,1.28.2,1492,0675adf42768631c7c9cbb94b4edc3f06e56e2f459a352999ec0002f8c82c81d,2,0.0046,0.0042,0.0042,480.197,1.0,1.0,1.0,1.0,1.0,1,0,0,,,,,,,1.0,Page 2 has no extractable content.
+pymupdf,multi_section.pdf,True,ok,,,1.28.2,2512,8ee085834d8a31f1588f01acf1b077d855870b2260e5e2758af2f6eb58b50a9d,3,0.0141,0.0139,0.0139,215.693,1.0,1.0,1.0,1.0,1.0,3,0,0,,,,,,,1.0,
+pymupdf,two_column.pdf,True,ok,,,1.28.2,2600,a8e31418a3bbb9b3efe8cad11420912faa1ecf6eac2bd6040647652d506242d7,1,0.0236,0.0237,0.0237,42.229,1.0,1.0,1.0,1.0,1.0,2,0,0,,,,,,,1.0,
+pymupdf,headers_footers.pdf,True,ok,,,1.28.2,5448,ed0394332b1d02d484a29becbe2eb5e3b096a990202f67fae1167a839459287c,3,0.0466,0.0455,0.0455,65.903,1.0,1.0,1.0,1.0,1.0,3,0,0,,,,,,,1.0,
+pymupdf,rotated.pdf,True,ok,,,1.28.2,2299,bda289901eafdd096971db5d4fcc34b8c6139f62d3aabfa162899b7eb5437c96,2,0.0153,0.0138,0.0138,145.294,1.0,1.0,1.0,1.0,1.0,2,0,0,,,,,,,1.0,
+pymupdf,multipage_table.pdf,True,ok,,,1.28.2,36958,24e9f5682767e1d88066ba9b3dbc637d8b6a2099248568ae8d9488c77832a79a,2,0.083,0.0821,0.0821,24.372,1.0,1.0,1.0,1.0,1.0,2,2,2,1.0,1.0,1.0,0.0,,,1.0,
+pymupdf,images_captions.pdf,True,ok,,,1.28.2,241422,04231ef6842382acb281fc7bbbdae072bb877ba34c86ef00f448fca7bb7cb5c8,1,0.0136,0.0128,0.0128,78.221,1.0,1.0,1.0,1.0,1.0,1,0,0,,,,,1.0,,1.0,
+pymupdf,scanned.pdf,True,unsupported,ocr,,1.28.2,6792258,fbb75885adc57f71e1a1fd9d6793718bca99e3b16b0dacf547754f13cf932d85,2,0.0408,0.0407,0.0407,49.091,,,,,,,,0,,,,,,,,capability 'ocr' is not supported by pymupdf; fixture not scored (N/A)
+pymupdf,mixed_sizes.pdf,True,ok,,,1.28.2,3322,87d08ffb8ca11e68b721667cb42c207bb9a57310fe2cde019e2b65c0f10b83d5,1,0.0163,0.0163,0.0163,61.356,1.0,1.0,1.0,1.0,1.0,3,0,0,,,,,,,1.0,
+pypdf,simple_digital.pdf,True,ok,,,7.0.1,1461,5ec1dfad9c75f216a8f5389f7b4c34157586861e42a8c1292375a0707f3ad519,1,0.0094,0.0015,0.0015,673.93,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,
+pypdf,multipage_structured.pdf,True,ok,,,7.0.1,2543,0198214d863011d2c467a1307e795ed6aceb72fc567449bb408cb066aa5046d8,3,0.0024,0.0029,0.0029,1026.08,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,
+pypdf,tables.pdf,True,ok,,,7.0.1,3036,044b0fa245d72a9a99aa8e0bc986d422dd2d9e6906970c8dd0001778a5edf317,1,0.0016,0.0015,0.0015,654.754,1.0,1.0,,1.0,,,0,1,,,,,,,1.0,
+pypdf,blank_page.pdf,True,ok,,,7.0.1,1492,0675adf42768631c7c9cbb94b4edc3f06e56e2f459a352999ec0002f8c82c81d,2,0.0009,0.0008,0.0008,2446.483,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,Page 2 has no extractable text.
+pypdf,multi_section.pdf,True,ok,,,7.0.1,2512,8ee085834d8a31f1588f01acf1b077d855870b2260e5e2758af2f6eb58b50a9d,3,0.0024,0.0029,0.0029,1032.924,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,
+pypdf,two_column.pdf,True,ok,,,7.0.1,2600,a8e31418a3bbb9b3efe8cad11420912faa1ecf6eac2bd6040647652d506242d7,1,0.0033,0.0041,0.0041,241.926,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,
+pypdf,headers_footers.pdf,True,ok,,,7.0.1,5448,ed0394332b1d02d484a29becbe2eb5e3b096a990202f67fae1167a839459287c,3,0.0063,0.0066,0.0066,457.523,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,
+pypdf,rotated.pdf,True,ok,,,7.0.1,2299,bda289901eafdd096971db5d4fcc34b8c6139f62d3aabfa162899b7eb5437c96,2,0.0022,0.0022,0.0022,897.381,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,
+pypdf,multipage_table.pdf,True,ok,,,7.0.1,36958,24e9f5682767e1d88066ba9b3dbc637d8b6a2099248568ae8d9488c77832a79a,2,0.0171,0.0161,0.0161,124.325,1.0,1.0,,1.0,,,0,2,,,,,,,1.0,
+pypdf,images_captions.pdf,True,ok,,,7.0.1,241422,04231ef6842382acb281fc7bbbdae072bb877ba34c86ef00f448fca7bb7cb5c8,1,0.0021,0.0019,0.0019,527.971,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,
+pypdf,scanned.pdf,True,unsupported,ocr,,7.0.1,6792258,fbb75885adc57f71e1a1fd9d6793718bca99e3b16b0dacf547754f13cf932d85,2,0.0021,0.0033,0.0033,612.753,,,,,,,,0,,,,,,,,Page 1 has no extractable text.; Page 2 has no extractable text.; capability 'ocr' is not supported by pypdf; fixture not scored (N/A)
+pypdf,mixed_sizes.pdf,True,ok,,,7.0.1,3322,87d08ffb8ca11e68b721667cb42c207bb9a57310fe2cde019e2b65c0f10b83d5,1,0.0025,0.0024,0.0024,420.647,1.0,1.0,,1.0,,,0,0,,,,,,,1.0,
+docling,simple_digital.pdf,True,ok,,,2.150.0,1461,5ec1dfad9c75f216a8f5389f7b4c34157586861e42a8c1292375a0707f3ad519,1,8.3798,0.3808,0.3808,2.626,1.0,1.0,1.0,1.0,1.0,1,0,0,,,,,,,1.0,
+docling,multipage_structured.pdf,True,ok,,,2.150.0,2543,0198214d863011d2c467a1307e795ed6aceb72fc567449bb408cb066aa5046d8,3,1.0647,0.9105,0.9105,3.295,1.0,1.0,1.0,1.0,1.0,3,0,0,,,,,,,1.0,
+docling,tables.pdf,True,ok,,,2.150.0,3036,044b0fa245d72a9a99aa8e0bc986d422dd2d9e6906970c8dd0001778a5edf317,1,0.8407,0.7397,0.7397,1.352,1.0,1.0,1.0,1.0,1.0,1,1,1,1.0,1.0,1.0,0.0,,,1.0,
+docling,blank_page.pdf,True,ok,,,2.150.0,1492,0675adf42768631c7c9cbb94b4edc3f06e56e2f459a352999ec0002f8c82c81d,2,0.6468,0.6727,0.6727,2.973,1.0,1.0,1.0,1.0,1.0,1,0,0,,,,,,,1.0,Page 2 has no extractable content.
+docling,multi_section.pdf,True,ok,,,2.150.0,2512,8ee085834d8a31f1588f01acf1b077d855870b2260e5e2758af2f6eb58b50a9d,3,0.9966,0.9893,0.9893,3.033,1.0,1.0,1.0,1.0,1.0,3,0,0,,,,,,,1.0,
+docling,two_column.pdf,True,ok,,,2.150.0,2600,a8e31418a3bbb9b3efe8cad11420912faa1ecf6eac2bd6040647652d506242d7,1,0.3913,0.387,0.387,2.584,1.0,1.0,1.0,1.0,1.0,2,0,0,,,,,,,1.0,
+docling,headers_footers.pdf,True,ok,,,2.150.0,5448,ed0394332b1d02d484a29becbe2eb5e3b096a990202f67fae1167a839459287c,3,0.9912,0.9576,0.9576,3.133,1.0,0.375,1.0,1.0,1.0,3,0,0,,,,,,,0.7917,
+docling,rotated.pdf,True,ok,,,2.150.0,2299,bda289901eafdd096971db5d4fcc34b8c6139f62d3aabfa162899b7eb5437c96,2,0.9599,0.9293,0.9293,2.152,1.0,0.8571,1.0,0.0,1.0,2,1,0,,,,,,,0.619,
+docling,multipage_table.pdf,True,ok,,,2.150.0,36958,24e9f5682767e1d88066ba9b3dbc637d8b6a2099248568ae8d9488c77832a79a,2,5.1215,5.1769,5.1769,0.386,1.0,1.0,1.0,1.0,1.0,2,2,2,1.0,1.0,1.0,0.0,,,1.0,
+docling,images_captions.pdf,True,ok,,,2.150.0,241422,04231ef6842382acb281fc7bbbdae072bb877ba34c86ef00f448fca7bb7cb5c8,1,0.392,0.3663,0.3663,2.73,1.0,1.0,1.0,1.0,1.0,1,0,0,,,,,1.0,,1.0,
+docling,scanned.pdf,True,unsupported,ocr,,2.150.0,6792258,fbb75885adc57f71e1a1fd9d6793718bca99e3b16b0dacf547754f13cf932d85,2,0.6872,0.6875,0.6875,2.909,,,,,,,,0,,,,,,,,Page 1 has no extractable content.; Page 2 has no extractable content.; capability 'ocr' is not supported by docling; fixture not scored (N/A)
+docling,mixed_sizes.pdf,True,ok,,,2.150.0,3322,87d08ffb8ca11e68b721667cb42c207bb9a57310fe2cde019e2b65c0f10b83d5,1,0.3869,0.3711,0.3711,2.695,1.0,1.0,1.0,1.0,1.0,3,0,0,,,,,,1.0,1.0,

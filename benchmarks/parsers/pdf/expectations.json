@@ -1,0 +1,349 @@
+{
+  "simple_digital.pdf": {
+    "expected_pages": 1,
+    "expected_text": [
+      "Quarterly Report Overview",
+      "steady growth"
+    ],
+    "expected_headings": [
+      "Quarterly Report Overview"
+    ],
+    "expected_tables": 0,
+    "blank_pages": [],
+    "reading_order": [
+      "Quarterly Report Overview",
+      "steady growth"
+    ]
+  },
+  "multipage_structured.pdf": {
+    "expected_pages": 3,
+    "expected_text": [
+      "Introduction",
+      "Methods",
+      "Results",
+      "data collection"
+    ],
+    "expected_headings": [
+      "Introduction",
+      "Methods",
+      "Results"
+    ],
+    "expected_tables": 0,
+    "blank_pages": [],
+    "reading_order": [
+      "Introduction",
+      "Methods",
+      "Results"
+    ]
+  },
+  "tables.pdf": {
+    "expected_pages": 1,
+    "expected_text": [
+      "Invoice Summary",
+      "Widget",
+      "Gadget",
+      "Gizmo"
+    ],
+    "expected_headings": [
+      "Invoice Summary"
+    ],
+    "expected_tables": 1,
+    "expected_table_header": [
+      "Item",
+      "Qty",
+      "Price"
+    ],
+    "expected_table_cells": [
+      "Widget",
+      "Gadget",
+      "Gizmo",
+      "19.99",
+      "5.50",
+      "42.00"
+    ],
+    "expected_table_pages": {
+      "1": [
+        "Widget",
+        "Gadget",
+        "Gizmo"
+      ]
+    },
+    "blank_pages": [],
+    "reading_order": [
+      "Invoice Summary",
+      "Widget",
+      "Totals include"
+    ]
+  },
+  "blank_page.pdf": {
+    "expected_pages": 2,
+    "expected_text": [
+      "Content Before Blank Page"
+    ],
+    "expected_headings": [
+      "Content Before Blank Page"
+    ],
+    "expected_tables": 0,
+    "blank_pages": [
+      2
+    ],
+    "reading_order": [
+      "Content Before Blank Page"
+    ]
+  },
+  "multi_section.pdf": {
+    "expected_pages": 3,
+    "expected_text": [
+      "Section One",
+      "Section Two",
+      "Section Three",
+      "MARKER-01",
+      "MARKER-03",
+      "MARKER-05"
+    ],
+    "expected_headings": [
+      "Section One",
+      "Section Two",
+      "Section Three"
+    ],
+    "expected_tables": 0,
+    "blank_pages": [],
+    "reading_order": [
+      "MARKER-01",
+      "MARKER-03",
+      "MARKER-05"
+    ]
+  },
+  "two_column.pdf": {
+    "expected_pages": 1,
+    "expected_text": [
+      "Column Alpha",
+      "Column Beta",
+      "ALPHA-MARKER-01",
+      "ALPHA-MARKER-02",
+      "ALPHA-MARKER-03",
+      "ALPHA-MARKER-04",
+      "ALPHA-MARKER-05",
+      "BETA-MARKER-01",
+      "BETA-MARKER-02",
+      "BETA-MARKER-03",
+      "BETA-MARKER-04",
+      "BETA-MARKER-05"
+    ],
+    "expected_headings": [
+      "Column Alpha",
+      "Column Beta"
+    ],
+    "expected_tables": 0,
+    "blank_pages": [],
+    "reading_order": [
+      "ALPHA-MARKER-01",
+      "ALPHA-MARKER-02",
+      "ALPHA-MARKER-03",
+      "ALPHA-MARKER-04",
+      "ALPHA-MARKER-05",
+      "BETA-MARKER-01",
+      "BETA-MARKER-02",
+      "BETA-MARKER-03",
+      "BETA-MARKER-04",
+      "BETA-MARKER-05"
+    ]
+  },
+  "headers_footers.pdf": {
+    "expected_pages": 3,
+    "expected_text": [
+      "PROME SYNTHETIC REPORT",
+      "INTERNAL-01",
+      "INTERNAL-02",
+      "INTERNAL-03",
+      "Synthetic benchmark fixture - page 1",
+      "Synthetic benchmark fixture - page 2",
+      "Synthetic benchmark fixture - page 3",
+      "PAGE-01",
+      "PAGE-02",
+      "PAGE-03",
+      "Report Section Alpha",
+      "Report Section Beta",
+      "Report Section Gamma",
+      "REPORT-ALPHA-MARKER",
+      "REPORT-BETA-MARKER",
+      "REPORT-GAMMA-MARKER"
+    ],
+    "expected_headings": [
+      "Report Section Alpha",
+      "Report Section Beta",
+      "Report Section Gamma"
+    ],
+    "expected_tables": 0,
+    "blank_pages": [],
+    "reading_order": [
+      "Report Section Alpha",
+      "Report Section Beta",
+      "Report Section Gamma"
+    ],
+    "known_extraction_gaps": {
+      "docling": [
+        "PROME SYNTHETIC REPORT",
+        "INTERNAL-01",
+        "INTERNAL-02",
+        "INTERNAL-03",
+        "Synthetic benchmark fixture - page 1",
+        "Synthetic benchmark fixture - page 2",
+        "Synthetic benchmark fixture - page 3",
+        "PAGE-01",
+        "PAGE-02",
+        "PAGE-03"
+      ]
+    }
+  },
+  "rotated.pdf": {
+    "expected_pages": 2,
+    "expected_text": [
+      "Rotated Content Showcase",
+      "NORMAL-MARKER-1",
+      "NORMAL-MARKER-2",
+      "ROTATED-MARKER-90",
+      "Rotated Page Setup",
+      "ROTATED-PAGE-MARKER-2",
+      "ROTATED-PAGE-MARKER-3"
+    ],
+    "expected_headings": [
+      "Rotated Content Showcase",
+      "Rotated Page Setup"
+    ],
+    "expected_tables": 0,
+    "blank_pages": [],
+    "reading_order": [
+      "Rotated Content Showcase",
+      "NORMAL-MARKER-1",
+      "Rotated Page Setup",
+      "ROTATED-PAGE-MARKER-2"
+    ],
+    "known_extraction_gaps": {
+      "docling": [
+        "ROTATED-MARKER-90",
+        "ROTATED-PAGE-MARKER-2"
+      ]
+    }
+  },
+  "multipage_table.pdf": {
+    "expected_pages": 2,
+    "expected_text": [
+      "Component Catalog",
+      "Component Catalog Continued",
+      "SKU-001",
+      "SKU-030",
+      "SKU-031",
+      "SKU-060"
+    ],
+    "expected_headings": [
+      "Component Catalog",
+      "Component Catalog Continued"
+    ],
+    "expected_tables": 2,
+    "expected_table_header": [
+      "SKU",
+      "Name",
+      "Qty",
+      "Price"
+    ],
+    "expected_table_cells": [
+      "SKU-001",
+      "Component 001",
+      "SKU-030",
+      "Component 030",
+      "SKU-031",
+      "Component 031",
+      "SKU-060",
+      "Component 060"
+    ],
+    "expected_table_pages": {
+      "1": [
+        "SKU-001",
+        "Component 015",
+        "SKU-030",
+        "Component 030"
+      ],
+      "2": [
+        "SKU-031",
+        "Component 045",
+        "SKU-060",
+        "Component 060"
+      ]
+    },
+    "blank_pages": [],
+    "reading_order": [
+      "Component Catalog",
+      "SKU-001",
+      "Component Catalog Continued",
+      "SKU-060"
+    ]
+  },
+  "images_captions.pdf": {
+    "expected_pages": 1,
+    "expected_text": [
+      "Visual Evidence",
+      "NODE-ALPHA",
+      "NODE-BETA",
+      "NODE-GAMMA",
+      "Figure 1",
+      "Figure 2",
+      "CAPTION-MARKER-1",
+      "CAPTION-MARKER-2"
+    ],
+    "expected_headings": [
+      "Visual Evidence"
+    ],
+    "expected_tables": 0,
+    "expected_images": 1,
+    "blank_pages": [],
+    "reading_order": [
+      "Visual Evidence",
+      "Figure 1",
+      "Figure 2",
+      "CAPTION-MARKER-1"
+    ]
+  },
+  "scanned.pdf": {
+    "expected_pages": 2,
+    "expected_text": [],
+    "expected_headings": [],
+    "expected_tables": 0,
+    "blank_pages": [],
+    "reading_order": [],
+    "requires_ocr": true
+  },
+  "mixed_sizes.pdf": {
+    "expected_pages": 1,
+    "expected_text": [
+      "Mixed Sizes Overview",
+      "Section Alpha",
+      "MIXED-ALPHA-MARKER",
+      "ITEM-ALPHA-1",
+      "ITEM-ALPHA-2",
+      "ITEM-ALPHA-3",
+      "Section Beta",
+      "MIXED-BETA-MARKER",
+      "MIXED-FINE-MARKER"
+    ],
+    "expected_headings": [
+      "Mixed Sizes Overview",
+      "Section Alpha",
+      "Section Beta"
+    ],
+    "expected_tables": 0,
+    "expected_list_items": [
+      "ITEM-ALPHA-1",
+      "ITEM-ALPHA-2",
+      "ITEM-ALPHA-3"
+    ],
+    "blank_pages": [],
+    "reading_order": [
+      "Mixed Sizes Overview",
+      "Section Alpha",
+      "ITEM-ALPHA-1",
+      "Section Beta",
+      "MIXED-FINE-MARKER"
+    ]
+  }
+}

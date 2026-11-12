@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Documentation: Core Concepts</title>
+  <meta name="description" content="Reference documentation for core concepts.">
+</head>
+<body>
+  <main>
+    <h1>Core Concepts</h1>
+    <p>This page documents the core concepts of the system. Each section below describes a single concept in depth, starting from the most fundamental definitions and building up to advanced usage patterns.</p>
+    <h2>Architecture Overview</h2>
+    <p>The system is organized into layers. Each layer has a clearly defined responsibility, and dependencies always point downward, which keeps the design comprehensible and resistant to accidental coupling.</p>
+    <h3>The Storage Layer</h3>
+    <p>The storage layer persists documents and exposes a narrow query interface. It knows nothing about rendering, scheduling, or transport concerns, which makes it straightforward to swap backends when requirements change.</p>
+    <h3>The Rendering Layer</h3>
+    <p>The rendering layer turns stored documents into presentation output. It consumes a stable intermediate representation, so new output formats can be added without touching storage or ingestion code paths.</p>
+    <h4>Inline Elements</h4>
+    <p>Inline elements carry semantic meaning inside a line of text. They are handled by dedicated visitors that preserve nesting and never reorder content, which keeps generated output faithful to the source.</p>
+    <h4>Block Elements</h4>
+    <p>Block elements define the vertical rhythm of the document. Each block is processed independently and in source order, which guarantees a predictable reading experience even for deeply nested structures.</p>
+    <h2>Lifecycle</h2>
+    <p>Documents move through a well-defined lifecycle from ingestion to archival. Hooks are available at every stage so integrations can observe or modify documents without forking the pipeline.</p>
+    <h3>Ingestion</h3>
+    <p>Ingestion validates the incoming document, assigns stable identifiers, and records provenance metadata. Invalid documents are rejected with precise error messages that callers can surface directly to users.</p>
+    <h3>Archival</h3>
+    <p>Archival moves expired documents to cold storage while retaining an index entry. Retrieval from the archive is slower but lossless, and archived documents remain searchable for compliance audits.</p>
+    <h2>Configuration</h2>
+    <p>All configuration is explicit and versioned alongside the code. Defaults are chosen to be safe, and every override is validated at startup so misconfiguration fails fast rather than silently degrading.</p>
+  </main>
+</body>
+</html>

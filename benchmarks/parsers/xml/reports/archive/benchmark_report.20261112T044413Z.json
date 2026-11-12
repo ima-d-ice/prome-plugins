@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T02:15:36.191241+00:00",
+    "python_version": "3.15.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O"
+  },
+  "summaries": [
+    {
+      "parser": "elementtree_xml",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.0001,
+      "throughput_docs_sec": 8525.75
+    },
+    {
+      "parser": "lxml_xml",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.0058,
+      "throughput_docs_sec": 171.47
+    }
+  ],
+  "results": [
+    {
+      "parser": "elementtree_xml",
+      "fixture": "catalog.xml",
+      "status": "ok",
+      "latency_sec": 0.0002,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "elementtree_xml",
+      "fixture": "namespaces.xml",
+      "status": "ok",
+      "latency_sec": 0.0001,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "elementtree_xml",
+      "fixture": "cdata.xml",
+      "status": "ok",
+      "latency_sec": 0.0001,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "elementtree_xml",
+      "fixture": "unicode.xml",
+      "status": "ok",
+      "latency_sec": 0.0001,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "lxml_xml",
+      "fixture": "catalog.xml",
+      "status": "ok",
+      "latency_sec": 0.0231,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "lxml_xml",
+      "fixture": "namespaces.xml",
+      "status": "ok",
+      "latency_sec": 0.0001,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "lxml_xml",
+      "fixture": "cdata.xml",
+      "status": "ok",
+      "latency_sec": 0.0001,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "lxml_xml",
+      "fixture": "unicode.xml",
+      "status": "ok",
+      "latency_sec": 0.0001,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    }
+  ]
+}

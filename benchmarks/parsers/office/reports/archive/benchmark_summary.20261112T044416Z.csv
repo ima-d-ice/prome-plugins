@@ -1,0 +1,5 @@
+parser,success_rate,avg_quality_score,avg_latency_sec,throughput_docs_sec
+python_docx,1.0,1.0,0.0071,140.84
+docling_docx,1.0,1.0,0.259,3.86
+python_pptx,1.0,1.0,0.0039,256.45
+docling_pptx,1.0,0.9167,0.0209,47.8

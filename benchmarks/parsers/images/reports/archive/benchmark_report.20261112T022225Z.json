@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T02:22:10.340213+00:00",
+    "python_version": "3.15.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O"
+  },
+  "summaries": [
+    {
+      "parser": "tesseract_ocr",
+      "status": "available",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.1167,
+      "throughput_docs_sec": 8.57
+    },
+    {
+      "parser": "paddleocr",
+      "status": "skipped",
+      "reason": "Dependencies or external binary not installed"
+    }
+  ],
+  "results": [
+    {
+      "parser": "tesseract_ocr",
+      "fixture": "clean_text.png",
+      "status": "ok",
+      "latency_sec": 0.1367,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "tesseract_ocr",
+      "fixture": "receipt.png",
+      "status": "ok",
+      "latency_sec": 0.0967,
+      "text_coverage": 1.0,
+      "block_coverage": 1.0,
+      "quality_score": 1.0
+    }
+  ]
+}

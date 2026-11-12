@@ -1,0 +1,21 @@
+{
+  "testsrc.mp4": {
+    "expected_codec": "h264",
+    "expected_width": 320,
+    "expected_height": 240,
+    "expected_fps": 10.0,
+    "expected_duration": 3.0,
+    "min_audio_streams": 1,
+    "expected_frames_interval": 3,
+    "max_frames_interval": 3
+  },
+  "scene_cut.mp4": {
+    "expected_codec": "h264",
+    "expected_width": 320,
+    "expected_height": 240,
+    "expected_fps": 10.0,
+    "expected_duration": 3.0,
+    "min_audio_streams": 0,
+    "scene_cut_timestamp": 1.5
+  }
+}

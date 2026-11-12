@@ -1,0 +1,9 @@
+scenario,queries,records,batch_size,latency_mean_ms,latency_p50_ms,latency_p95_ms,latency_min_ms,latency_max_ms,recall_at_k,recall_at_k_min,top_k,seconds,records_per_second,bytes,bytes_per_vector,unsupported
+dense_exact,100,,,0.9459,0.8441,1.5045,0.7797,3.5633,,,,,,,,
+dense_approximate,100,,,1.0589,0.953,1.6391,0.8088,3.0095,1.0,1.0,10,,,,,
+sparse,100,,,47.7167,44.4242,57.5265,42.8554,123.2295,,,,,,,,
+multi_vector,100,,,54.617,54.0607,57.5349,53.2027,63.7667,,,,,,,,
+dense_filtered,100,,,14.885,13.9075,14.8825,13.3335,101.3456,,,,,,,,
+batch_upsert,,3000,256,,,,,,,,,1.0214,2937.18,,,
+index_build,,,,,,,,,,,,,,,,the index could not be built: Qdrant configures hnsw indexes when the collection is created; recreate the collection with the index configuration instead of creating the index afterwards
+storage_footprint,,,,,,,,,,,,,,,,

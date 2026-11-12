@@ -1,0 +1,4 @@
+parser,success_rate,avg_quality_score,avg_latency_sec,throughput_docs_sec
+openpyxl,1.0,1.0,0.0023,431.9
+pandas_xlsx,1.0,1.0,0.0044,228.62
+csv_stdlib,1.0,1.0,0.0009,1148.21

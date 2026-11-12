@@ -1,0 +1,4 @@
+parser,skipped,parser_version,fixtures_total,fixtures_succeeded,extraction_success_rate,failure_rate,page_coverage,text_coverage,structure_preservation,reading_order_rate,total_time_seconds,throughput_pages_per_second
+pymupdf,False,1.28.2,5,5,1.0,0.0,1.0,1.0,1.0,1.0,0.0436,229.358
+pypdf,False,7.0.1,5,5,1.0,0.0,1.0,1.0,0.0,1.0,0.0104,961.538
+docling,False,2.150.0,5,5,1.0,0.0,1.0,1.0,1.0,1.0,14.1922,0.705

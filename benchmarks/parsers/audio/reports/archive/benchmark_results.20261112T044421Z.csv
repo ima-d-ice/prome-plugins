@@ -1,0 +1,6 @@
+parser,fixture,status,latency_sec,text_coverage,segment_coverage,language_accuracy,wer,quality_score
+faster_whisper,speech_en.wav,ok,0.4501,1.0,1.0,1.0,0.0714,1.0
+faster_whisper,speech_en.mp3,ok,0.4254,1.0,1.0,1.0,0.0714,1.0
+faster_whisper,speech_fr.wav,ok,0.4093,1.0,1.0,1.0,,1.0
+faster_whisper,long_speech.wav,ok,0.8382,1.0,1.0,1.0,,1.0
+faster_whisper,silence.wav,ok,0.3367,1.0,1.0,1.0,,1.0

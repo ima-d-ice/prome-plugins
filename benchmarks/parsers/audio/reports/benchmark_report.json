@@ -1,0 +1,76 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T04:44:25.553813+00:00",
+    "python_version": "3.15.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "model_size": "tiny (default)"
+  },
+  "summaries": [
+    {
+      "parser": "faster_whisper",
+      "status": "available",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.4366,
+      "throughput_docs_sec": 2.29,
+      "notes": "model=tiny"
+    }
+  ],
+  "results": [
+    {
+      "parser": "faster_whisper",
+      "fixture": "speech_en.wav",
+      "status": "ok",
+      "latency_sec": 0.3761,
+      "text_coverage": 1.0,
+      "segment_coverage": 1.0,
+      "language_accuracy": 1.0,
+      "wer": 0.0714,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "faster_whisper",
+      "fixture": "speech_en.mp3",
+      "status": "ok",
+      "latency_sec": 0.3697,
+      "text_coverage": 1.0,
+      "segment_coverage": 1.0,
+      "language_accuracy": 1.0,
+      "wer": 0.0714,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "faster_whisper",
+      "fixture": "speech_fr.wav",
+      "status": "ok",
+      "latency_sec": 0.3759,
+      "text_coverage": 1.0,
+      "segment_coverage": 1.0,
+      "language_accuracy": 1.0,
+      "wer": null,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "faster_whisper",
+      "fixture": "long_speech.wav",
+      "status": "ok",
+      "latency_sec": 0.7426,
+      "text_coverage": 1.0,
+      "segment_coverage": 1.0,
+      "language_accuracy": 1.0,
+      "wer": null,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "faster_whisper",
+      "fixture": "silence.wav",
+      "status": "ok",
+      "latency_sec": 0.3186,
+      "text_coverage": 1.0,
+      "segment_coverage": 1.0,
+      "language_accuracy": 1.0,
+      "wer": null,
+      "quality_score": 1.0
+    }
+  ]
+}

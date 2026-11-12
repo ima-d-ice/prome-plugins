@@ -1,0 +1,15 @@
+parser,fixture,status,latency_sec,text_coverage,table_accuracy,quality_score
+openpyxl,multi_sheet.xlsx,ok,0.0042,1.0,1.0,1.0
+openpyxl,data_types.xlsx,ok,0.0018,1.0,1.0,1.0
+openpyxl,merged_cells.xlsx,ok,0.0016,1.0,1.0,1.0
+openpyxl,unicode.xlsx,ok,0.0016,1.0,1.0,1.0
+pandas_xlsx,multi_sheet.xlsx,ok,0.0106,1.0,1.0,1.0
+pandas_xlsx,data_types.xlsx,ok,0.0027,1.0,1.0,1.0
+pandas_xlsx,merged_cells.xlsx,ok,0.0022,1.0,1.0,1.0
+pandas_xlsx,unicode.xlsx,ok,0.0021,1.0,1.0,1.0
+csv_stdlib,standard.csv,ok,0.0008,1.0,1.0,1.0
+csv_stdlib,semicolon.csv,ok,0.0004,1.0,1.0,1.0
+csv_stdlib,pipe_delimited.csv,ok,0.0005,1.0,1.0,1.0
+csv_stdlib,quoted_multiline.csv,ok,0.0003,1.0,1.0,1.0
+csv_stdlib,unicode.csv,ok,0.0003,1.0,1.0,1.0
+csv_stdlib,large.csv,ok,0.0029,1.0,1.0,1.0

@@ -1,0 +1,38 @@
+{
+  "simple_plain.eml": {
+    "format": "eml",
+    "expected_text": ["meet tomorrow at 10 AM", "discuss the roadmap"],
+    "expected_subject": "Quarterly Sync",
+    "expected_is_reply": false
+  },
+  "html_email.eml": {
+    "format": "eml",
+    "expected_text": ["Welcome!", "Thanks for joining"],
+    "expected_subject": "Welcome to Prome",
+    "expected_is_reply": false
+  },
+  "multipart_attachment.eml": {
+    "format": "eml",
+    "expected_text": ["statement attached"],
+    "expected_subject": "Monthly Report Attached",
+    "expected_attachments": 1,
+    "expected_is_reply": false
+  },
+  "thread_reply.eml": {
+    "format": "eml",
+    "expected_text": ["10 AM works for me"],
+    "expected_subject": "Re: Quarterly Sync",
+    "expected_is_reply": true
+  },
+  "unicode.eml": {
+    "format": "eml",
+    "expected_text": ["こんにちは", "rencontrer"],
+    "expected_subject": "国際交流: Café et résumé",
+    "expected_is_reply": false
+  },
+  "archive.mbox": {
+    "format": "mbox",
+    "expected_messages": 3,
+    "expected_text": ["Newsletter volume 1", "Newsletter volume 2", "Newsletter volume 3"]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-11-12T10:59:25.295846+00:00",
+  "backend": "qdrant",
+  "mode": "server",
+  "environment": {
+    "python": "3.15.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O"
+  },
+  "configuration": {
+    "records": 3000,
+    "queries": 100,
+    "repeats": 1,
+    "top_k": 10,
+    "dimensions": 128,
+    "sparse_terms": 24,
+    "multi_rows": 8,
+    "batch_size": 256,
+    "hnsw_ef": 64,
+    "seed": 20240517,
+    "vector_spaces": {
+      "dense": "dense",
+      "sparse": "sparse",
+      "late": "multi-vector"
+    }
+  },
+  "notes": [
+    "All vectors are synthetic and deterministic: no model is downloaded and no inference is run.",
+    "The same corpus is used for every backend, so the numbers are comparable.",
+    "Latency and recall are reported separately; there is no combined score.",
+    "Numbers describe this synthetic corpus on this machine; they are not production baselines.",
+    "approximate index: the index could not be built: Qdrant configures hnsw indexes when the collection is created; recreate the collection with the index configuration instead of creating the index afterwards"
+  ],
+  "skipped": [],
+  "results": [
+    {
+      "scenario": "dense_exact",
+      "queries": 100,
+      "latency_mean_ms": 2.6513,
+      "latency_p50_ms": 2.5684,
+      "latency_p95_ms": 3.3971,
+      "latency_min_ms": 1.926,
+      "latency_max_ms": 5.6177,
+      "metric": "cosine",
+      "score_direction": "higher-is-better"
+    },
+    {
+      "scenario": "dense_approximate",
+      "queries": 100,
+      "latency_mean_ms": 2.8011,
+      "latency_p50_ms": 2.5051,
+      "latency_p95_ms": 4.1956,
+      "latency_min_ms": 1.9289,
+      "latency_max_ms": 8.8329,
+      "recall_at_k": 1.0,
+      "recall_at_k_min": 1.0,
+      "top_k": 10,
+      "index_built": false
+    },
+    {
+      "scenario": "sparse",
+      "queries": 100,
+      "latency_mean_ms": 2.429,
+      "latency_p50_ms": 2.3151,
+      "latency_p95_ms": 3.3233,
+      "latency_min_ms": 1.7271,
+      "latency_max_ms": 3.7208
+    },
+    {
+      "scenario": "multi_vector",
+      "queries": 100,
+      "latency_mean_ms": 4.166,
+      "latency_p50_ms": 4.02,
+      "latency_p95_ms": 4.9295,
+      "latency_min_ms": 3.5915,
+      "latency_max_ms": 5.9428
+    },
+    {
+      "scenario": "dense_filtered",
+      "queries": 100,
+      "latency_mean_ms": 2.3863,
+      "latency_p50_ms": 2.3084,
+      "latency_p95_ms": 2.8725,
+      "latency_min_ms": 1.8954,
+      "latency_max_ms": 3.641
+    },
+    {
+      "scenario": "batch_upsert",
+      "queries": null,
+      "records": 3000,
+      "batch_size": 256,
+      "seconds": 2.0598,
+      "records_per_second": 1456.48,
+      "latency_mean_ms": null,
+      "latency_p50_ms": null,
+      "latency_p95_ms": null,
+      "latency_min_ms": null,
+      "latency_max_ms": null
+    },
+    {
+      "scenario": "index_build",
+      "queries": null,
+      "records": null,
+      "batch_size": null,
+      "seconds": null,
+      "records_per_second": null,
+      "latency_mean_ms": null,
+      "latency_p50_ms": null,
+      "latency_p95_ms": null,
+      "latency_min_ms": null,
+      "latency_max_ms": null,
+      "unsupported": "the index could not be built: Qdrant configures hnsw indexes when the collection is created; recreate the collection with the index configuration instead of creating the index afterwards"
+    },
+    {
+      "scenario": "storage_footprint",
+      "queries": null,
+      "records": null,
+      "batch_size": null,
+      "seconds": null,
+      "records_per_second": null,
+      "latency_mean_ms": null,
+      "latency_p50_ms": null,
+      "latency_p95_ms": null,
+      "latency_min_ms": null,
+      "latency_max_ms": null,
+      "bytes": null,
+      "bytes_per_vector": null
+    }
+  ],
+  "archived_previous": []
+}

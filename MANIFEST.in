@@ -1,0 +1,5 @@
+include README.md
+recursive-include chunkers *.md
+recursive-include embeddings *.md
+recursive-include parsers *.md
+recursive-include vector_stores *.md

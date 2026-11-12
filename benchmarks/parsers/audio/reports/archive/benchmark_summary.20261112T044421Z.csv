@@ -1,0 +1,2 @@
+parser,status,success_rate,avg_quality_score,avg_latency_sec,throughput_docs_sec,notes
+faster_whisper,available,1.0,1.0,0.4919,2.03,model=tiny

@@ -1,0 +1,12 @@
+From: Bob <bob@example.com>
+To: Alice <alice@example.com>
+Subject: Re: Quarterly Sync
+Date: Wed, 11 Nov 2026 17:00:00 +0000
+Message-ID: <msg-004@example.com>
+In-Reply-To: <msg-001@example.com>
+References: <msg-001@example.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Sounds good Alice, 10 AM works for me.

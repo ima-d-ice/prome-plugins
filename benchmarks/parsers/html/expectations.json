@@ -1,0 +1,502 @@
+{
+  "simple_article.html": {
+    "expected_text": [
+      "Getting Started with Widgets",
+      "fundamental building blocks",
+      "Installing Widgets",
+      "widget library",
+      "Your First Widget",
+      "event bus"
+    ],
+    "expected_headings": [
+      "Getting Started with Widgets",
+      "Installing Widgets",
+      "Your First Widget"
+    ],
+    "expected_heading_levels": {
+      "Getting Started with Widgets": 1,
+      "Installing Widgets": 2,
+      "Your First Widget": 2
+    },
+    "expected_tables": 0,
+    "expected_list_items": [],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "Getting Started with Widgets",
+      "Installing Widgets",
+      "Your First Widget"
+    ],
+    "expected_metadata": ["title", "description", "author"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "documentation_headings.html": {
+    "expected_text": [
+      "Core Concepts",
+      "Architecture Overview",
+      "The Storage Layer",
+      "The Rendering Layer",
+      "Inline Elements",
+      "Block Elements",
+      "Lifecycle",
+      "Ingestion",
+      "Archival",
+      "Configuration"
+    ],
+    "expected_headings": [
+      "Core Concepts",
+      "Architecture Overview",
+      "The Storage Layer",
+      "The Rendering Layer",
+      "Inline Elements",
+      "Block Elements",
+      "Lifecycle",
+      "Ingestion",
+      "Archival",
+      "Configuration"
+    ],
+    "expected_heading_levels": {
+      "Core Concepts": 1,
+      "Architecture Overview": 2,
+      "The Storage Layer": 3,
+      "The Rendering Layer": 3,
+      "Inline Elements": 4,
+      "Block Elements": 4,
+      "Lifecycle": 2,
+      "Ingestion": 3,
+      "Archival": 3,
+      "Configuration": 2
+    },
+    "expected_tables": 0,
+    "expected_list_items": [],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "Core Concepts",
+      "The Storage Layer",
+      "Inline Elements",
+      "Lifecycle",
+      "Archival",
+      "Configuration"
+    ],
+    "expected_metadata": ["title", "description"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "nested_lists.html": {
+    "expected_text": [
+      "List Examples",
+      "Supported Ingredients",
+      "Flour",
+      "Sugar",
+      "Granulated sugar",
+      "Brown sugar",
+      "Light brown",
+      "Dark brown",
+      "Powdered sugar",
+      "Butter",
+      "Preparation Steps",
+      "Preheat the oven",
+      "Bake until golden"
+    ],
+    "expected_headings": [
+      "List Examples",
+      "Supported Ingredients",
+      "Preparation Steps"
+    ],
+    "expected_heading_levels": {
+      "List Examples": 1,
+      "Supported Ingredients": 2,
+      "Preparation Steps": 2
+    },
+    "expected_tables": 0,
+    "expected_list_items": [
+      "Flour",
+      "Granulated sugar",
+      "Brown sugar",
+      "Light brown",
+      "Dark brown",
+      "Powdered sugar",
+      "Butter",
+      "Preheat the oven",
+      "Sift the flour",
+      "Whisk the sugar",
+      "Bake until golden"
+    ],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "List Examples",
+      "Supported Ingredients",
+      "Granulated sugar",
+      "Powdered sugar",
+      "Butter",
+      "Preparation Steps",
+      "Bake until golden"
+    ],
+    "expected_metadata": ["title", "description"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "complex_table.html": {
+    "expected_text": [
+      "Quarterly Invoice Summary",
+      "Widget Pro",
+      "Gadget Plus",
+      "Gizmo Basic",
+      "Sprocket Deluxe",
+      "19.99",
+      "49.50",
+      "239.88",
+      "Regional Breakdown",
+      "North",
+      "South",
+      "West",
+      "6100.40",
+      "Combined Header Example",
+      "Combined Segment"
+    ],
+    "expected_headings": [
+      "Quarterly Invoice Summary",
+      "Regional Breakdown",
+      "Combined Header Example"
+    ],
+    "expected_heading_levels": {
+      "Quarterly Invoice Summary": 1,
+      "Regional Breakdown": 2,
+      "Combined Header Example": 2
+    },
+    "expected_tables": 3,
+    "expected_table_header": [
+      "Item",
+      "Quantity",
+      "Unit Price",
+      "Total",
+      "Region",
+      "Invoices",
+      "Amount",
+      "Combined Segment"
+    ],
+    "expected_table_cells": [
+      "Widget Pro",
+      "Gadget Plus",
+      "Gizmo Basic",
+      "Sprocket Deluxe",
+      "19.99",
+      "49.50",
+      "239.88",
+      "North",
+      "South",
+      "West",
+      "4200.00",
+      "2350.75",
+      "6100.40",
+      "Alpha",
+      "Beta",
+      "Gamma",
+      "Delta"
+    ],
+    "expected_list_items": [],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "Quarterly Invoice Summary",
+      "Widget Pro",
+      "Regional Breakdown",
+      "West",
+      "Combined Header Example"
+    ],
+    "expected_metadata": ["title", "description"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "navigation_layout.html": {
+    "expected_text": [
+      "How Navigation Layouts Work",
+      "well-designed navigation layout",
+      "sidebar alongside",
+      "landmark roles",
+      "Regional landmarks"
+    ],
+    "expected_headings": [
+      "How Navigation Layouts Work"
+    ],
+    "expected_heading_levels": {
+      "How Navigation Layouts Work": 1
+    },
+    "expected_tables": 0,
+    "expected_list_items": [],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "How Navigation Layouts Work",
+      "sidebar alongside",
+      "landmark roles"
+    ],
+    "expected_metadata": ["title", "description"],
+    "boilerplate_text": [
+      "MUSTER ANALYTICS",
+      "Insight for busy teams",
+      "Download the whitepaper",
+      "Register for the webinar",
+      "SPONSORED: Upgrade your plan today",
+      "Copyright 2026 Muster Analytics"
+    ],
+    "forbidden_text": []
+  },
+  "links_images.html": {
+    "expected_text": [
+      "Media and Links Tour",
+      "overview guide",
+      "advanced guide",
+      "official specification",
+      "issue tracker",
+      "hero photograph",
+      "partner one",
+      "partner two",
+      "partner three"
+    ],
+    "expected_headings": [
+      "Media and Links Tour"
+    ],
+    "expected_heading_levels": {
+      "Media and Links Tour": 1
+    },
+    "expected_tables": 0,
+    "expected_list_items": [],
+    "expected_link_hrefs": [
+      "https://reference.example.com/overview",
+      "https://reference.example.com/advanced",
+      "https://standards.example.org/spec",
+      "https://tracker.example.net/issues",
+      "https://partners.example.com/one",
+      "https://partners.example.com/two",
+      "https://partners.example.com/three"
+    ],
+    "expected_images": [
+      "Pipeline architecture diagram",
+      "Campus office atrium with plants"
+    ],
+    "reading_order": [
+      "Media and Links Tour",
+      "overview guide",
+      "official specification",
+      "hero photograph",
+      "partner three"
+    ],
+    "expected_metadata": ["title", "description"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "malformed.html": {
+    "expected_text": [
+      "This paragraph is never closed",
+      "Second paragraph",
+      "unclosed bold"
+    ],
+    "expected_headings": [
+      "Malformed Page Example"
+    ],
+    "expected_heading_levels": {
+      "Malformed Page Example": 1
+    },
+    "expected_tables": 1,
+    "expected_table_header": [
+      "Name",
+      "Value"
+    ],
+    "expected_table_cells": [
+      "Alpha",
+      "Beta"
+    ],
+    "expected_list_items": [
+      "First item",
+      "Second item",
+      "Third item"
+    ],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "never closed",
+      "Second paragraph"
+    ],
+    "expected_metadata": ["title"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "metadata_og_jsonld.html": {
+    "expected_text": [
+      "Metadata Showcase Article",
+      "Open Graph",
+      "JSON-LD",
+      "structured data"
+    ],
+    "expected_headings": [
+      "Metadata Showcase Article"
+    ],
+    "expected_heading_levels": {
+      "Metadata Showcase Article": 1
+    },
+    "expected_tables": 0,
+    "expected_list_items": [],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "Metadata Showcase Article"
+    ],
+    "expected_metadata": ["title", "description", "author", "source_url"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "scripts_styles.html": {
+    "expected_text": [
+      "Scripts and Styles Isolation",
+      "Client-side scripts and CSS rules",
+      "Styles and scripts may appear",
+      "cleanup"
+    ],
+    "expected_headings": [
+      "Scripts and Styles Isolation"
+    ],
+    "expected_heading_levels": {
+      "Scripts and Styles Isolation": 1
+    },
+    "expected_tables": 0,
+    "expected_list_items": [],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "Scripts and Styles Isolation",
+      "Client-side scripts",
+      "cleanup"
+    ],
+    "expected_metadata": ["title", "description"],
+    "boilerplate_text": [],
+    "forbidden_text": [
+      "SECRET_ANALYTICS_TOKEN",
+      "tok_should_never_appear_in_output",
+      "window.track",
+      ".inline-style-block",
+      "@media print"
+    ]
+  },
+  "unicode_text.html": {
+    "expected_text": [
+      "Résumé des Café—naïve & façade",
+      "crème brûlée",
+      "straße",
+      "日本語のテキスト",
+      "العربية",
+      "Crème brûlée — classique",
+      "☕"
+    ],
+    "expected_headings": [
+      "Résumé des Café—naïve & façade"
+    ],
+    "expected_heading_levels": {
+      "Résumé des Café—naïve & façade": 1
+    },
+    "expected_tables": 0,
+    "expected_list_items": [
+      "Crème brûlée — classique",
+      "Naïve façade — test",
+      "日本語リスト項目 — tests"
+    ],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "Résumé des",
+      "crème brûlée",
+      "日本語",
+      "العربية",
+      "☕"
+    ],
+    "expected_metadata": ["title", "description"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "minimal_no_content.html": {
+    "expected_text": [],
+    "expected_headings": [],
+    "expected_heading_levels": {},
+    "expected_tables": 0,
+    "expected_list_items": [],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [],
+    "expected_metadata": ["title"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  },
+  "long_document.html": {
+    "expected_text": [
+      "The Field Guide to Reliable Pipelines",
+      "Ingestion",
+      "Validation",
+      "Capacity Planning",
+      "Incident Review",
+      "Blameless reviews",
+      "500 docs/min",
+      "Closing Thoughts",
+      "boring in the best possible way"
+    ],
+    "expected_headings": [
+      "The Field Guide to Reliable Pipelines",
+      "Ingestion",
+      "Validation",
+      "Storage",
+      "Operations",
+      "Alerting Philosophy",
+      "Incident Review",
+      "Capacity Planning",
+      "Closing Thoughts"
+    ],
+    "expected_heading_levels": {
+      "The Field Guide to Reliable Pipelines": 1,
+      "Ingestion": 2,
+      "Validation": 2,
+      "Storage": 2,
+      "Operations": 2,
+      "Alerting Philosophy": 3,
+      "Incident Review": 3,
+      "Capacity Planning": 2,
+      "Closing Thoughts": 2
+    },
+    "expected_tables": 1,
+    "expected_table_header": [
+      "Stage",
+      "Target Rate",
+      "Owner"
+    ],
+    "expected_table_cells": [
+      "Ingestion",
+      "Validation",
+      "Storage",
+      "500 docs/min",
+      "2000 docs/min",
+      "Data Platform",
+      "Data Quality",
+      "Infrastructure"
+    ],
+    "expected_list_items": [
+      "Schema validation rejects",
+      "Semantic validation flags",
+      "Policy validation enforces"
+    ],
+    "expected_link_hrefs": [],
+    "expected_images": [],
+    "reading_order": [
+      "Field Guide",
+      "Ingestion",
+      "Validation",
+      "Storage",
+      "Operations",
+      "Capacity Planning",
+      "Closing Thoughts"
+    ],
+    "expected_metadata": ["title", "description", "author"],
+    "boilerplate_text": [],
+    "forbidden_text": []
+  }
+}

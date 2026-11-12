@@ -1,0 +1,10 @@
+{
+  "clean_text.png": {
+    "expected_text": ["PROME", "PLUGINS", "Recognition", "Benchmark"],
+    "min_blocks": 2
+  },
+  "receipt.png": {
+    "expected_text": ["RECEIPT", "Widget", "Total"],
+    "min_blocks": 3
+  }
+}

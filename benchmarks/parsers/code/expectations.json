@@ -1,0 +1,37 @@
+{
+  "sample.py": {
+    "language": "python",
+    "expected_symbols": ["Calculator", "add", "compute_hypotenuse"],
+    "expected_text": ["Calculator", "compute_hypotenuse", "math"]
+  },
+  "sample.js": {
+    "language": "javascript",
+    "expected_symbols": ["TaskRunner", "runTask", "processBatch"],
+    "expected_text": ["TaskRunner", "processBatch"]
+  },
+  "sample.ts": {
+    "language": "typescript",
+    "expected_symbols": ["UserProfile", "UserService", "findUser", "formatGreeting"],
+    "expected_text": ["UserProfile", "UserService", "formatGreeting"]
+  },
+  "sample.java": {
+    "language": "java",
+    "expected_symbols": ["DataPipeline", "addRecord", "getRecordCount"],
+    "expected_text": ["DataPipeline", "addRecord"]
+  },
+  "sample.c": {
+    "language": "c",
+    "expected_symbols": ["multiply", "main"],
+    "expected_text": ["multiply", "main"]
+  },
+  "sample.cpp": {
+    "language": "cpp",
+    "expected_symbols": ["VectorBuffer", "push", "size"],
+    "expected_text": ["VectorBuffer", "push"]
+  },
+  "sample.go": {
+    "language": "go",
+    "expected_symbols": ["Worker", "Start", "NewWorker"],
+    "expected_text": ["Worker", "NewWorker"]
+  }
+}

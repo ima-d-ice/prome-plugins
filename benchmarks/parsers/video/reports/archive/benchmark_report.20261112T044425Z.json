@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T04:33:49.727616+00:00",
+    "python_version": "3.15.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O"
+  },
+  "summaries": [
+    {
+      "parser": "ffmpeg_video",
+      "status": "available",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.0128,
+      "throughput_docs_sec": 78.18,
+      "notes": "interval(1s)+scene strategies"
+    }
+  ],
+  "results": [
+    {
+      "parser": "ffmpeg_video",
+      "fixture": "testsrc.mp4",
+      "status": "ok",
+      "latency_sec": 0.0278,
+      "metadata_accuracy": 1.0,
+      "frames_extracted": 3.0,
+      "frames_ok": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "ffmpeg_video",
+      "fixture": "scene_cut.mp4",
+      "status": "ok",
+      "latency_sec": 0.0019,
+      "metadata_accuracy": 1.0,
+      "frames_extracted": 3.0,
+      "frames_ok": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "ffmpeg_video",
+      "fixture": "scene_cut.mp4[scene]",
+      "status": "ok",
+      "latency_sec": 0.0087,
+      "metadata_accuracy": 1.0,
+      "frames_extracted": 2.0,
+      "frames_ok": 1.0,
+      "quality_score": 1.0
+    }
+  ]
+}

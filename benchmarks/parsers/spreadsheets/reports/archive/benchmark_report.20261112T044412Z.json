@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T02:09:05.216054+00:00",
+    "python_version": "3.15.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O"
+  },
+  "summaries": [
+    {
+      "parser": "openpyxl",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.0023,
+      "throughput_docs_sec": 431.9
+    },
+    {
+      "parser": "pandas_xlsx",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.0044,
+      "throughput_docs_sec": 228.62
+    },
+    {
+      "parser": "csv_stdlib",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.0009,
+      "throughput_docs_sec": 1148.21
+    }
+  ],
+  "results": [
+    {
+      "parser": "openpyxl",
+      "fixture": "multi_sheet.xlsx",
+      "status": "ok",
+      "latency_sec": 0.0042,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "openpyxl",
+      "fixture": "data_types.xlsx",
+      "status": "ok",
+      "latency_sec": 0.0018,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "openpyxl",
+      "fixture": "merged_cells.xlsx",
+      "status": "ok",
+      "latency_sec": 0.0016,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "openpyxl",
+      "fixture": "unicode.xlsx",
+      "status": "ok",
+      "latency_sec": 0.0016,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "pandas_xlsx",
+      "fixture": "multi_sheet.xlsx",
+      "status": "ok",
+      "latency_sec": 0.0106,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "pandas_xlsx",
+      "fixture": "data_types.xlsx",
+      "status": "ok",
+      "latency_sec": 0.0027,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "pandas_xlsx",
+      "fixture": "merged_cells.xlsx",
+      "status": "ok",
+      "latency_sec": 0.0022,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "pandas_xlsx",
+      "fixture": "unicode.xlsx",
+      "status": "ok",
+      "latency_sec": 0.0021,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "csv_stdlib",
+      "fixture": "standard.csv",
+      "status": "ok",
+      "latency_sec": 0.0008,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "csv_stdlib",
+      "fixture": "semicolon.csv",
+      "status": "ok",
+      "latency_sec": 0.0004,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "csv_stdlib",
+      "fixture": "pipe_delimited.csv",
+      "status": "ok",
+      "latency_sec": 0.0005,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "csv_stdlib",
+      "fixture": "quoted_multiline.csv",
+      "status": "ok",
+      "latency_sec": 0.0003,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "csv_stdlib",
+      "fixture": "unicode.csv",
+      "status": "ok",
+      "latency_sec": 0.0003,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "csv_stdlib",
+      "fixture": "large.csv",
+      "status": "ok",
+      "latency_sec": 0.0029,
+      "text_coverage": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    }
+  ]
+}

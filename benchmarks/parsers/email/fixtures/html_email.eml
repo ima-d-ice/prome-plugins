@@ -1,0 +1,17 @@
+From: Support <support@example.com>
+To: User <user@example.com>
+Subject: Welcome to Prome
+Date: Wed, 11 Nov 2026 15:00:00 +0000
+Message-ID: <msg-002@example.com>
+Content-Type: multipart/alternative;
+ boundary="===============4627528753866976644=="
+
+--===============4627528753866976644==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html><body><h1>Welcome!</h1><p>Thanks for joining Prome RAG Plugins.</p></bo=
+dy></html>
+
+--===============4627528753866976644==--

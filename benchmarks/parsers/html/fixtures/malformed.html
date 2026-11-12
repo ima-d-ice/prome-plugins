@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Malformed Page Example</title>
+  <meta name="description" content="A deliberately malformed page">
+<body>
+  <h1>Malformed Page Example
+  <p>This paragraph is never closed, and the next heading follows it directly without any intervening markup whatsoever.
+  <p>Second paragraph with <b>unclosed bold and a <i>nested italic section
+  <div>A div sibling that overlaps the paragraphs</div>
+  <ul>
+    <li>First item
+    <li>Second item
+    <li>Third item</li>
+  </ul>
+  <table>
+    <tr><th>Name</th><th>Value</th></tr>
+    <tr><td>Alpha</td><td>1</td></tr>
+    <tr><td>Beta
+  </table>
+</body>

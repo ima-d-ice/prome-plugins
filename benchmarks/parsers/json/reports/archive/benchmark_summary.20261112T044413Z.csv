@@ -1,0 +1,2 @@
+parser,success_rate,avg_quality_score,avg_latency_sec,throughput_docs_sec
+json_stdlib,1.0,1.0,0.0004,2316.75

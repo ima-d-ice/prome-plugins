@@ -1,0 +1,22 @@
+{
+  "catalog.xml": {
+    "format": "xml",
+    "expected_text": ["Gambardella, Matthew", "XML Developer's Guide", "Midnight Rain", "44.95"],
+    "expected_xpaths": ["/catalog/book[1]/title", "/catalog/book[2]/title"]
+  },
+  "namespaces.xml": {
+    "format": "xml",
+    "expected_text": ["Document With Namespaces", "Alice Developer", "production"],
+    "expected_xpaths": ["/root/title", "/root/creator"]
+  },
+  "cdata.xml": {
+    "format": "xml",
+    "expected_text": ["Code Snippets Inside CDATA", "function test()", "x < y && a > b"],
+    "expected_xpaths": ["/article/headline", "/article/content"]
+  },
+  "unicode.xml": {
+    "format": "xml",
+    "expected_text": ["Bonjour le monde, café!", "こんにちは世界", "Привет мир"],
+    "expected_xpaths": ["/international/greeting[1]"]
+  }
+}

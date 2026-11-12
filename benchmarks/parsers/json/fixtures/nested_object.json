@@ -1,0 +1,25 @@
+{
+  "company": "Prome Technologies",
+  "headquarters": {
+    "city": "San Francisco",
+    "state": "CA",
+    "address": {
+      "street": "100 Market St",
+      "suite": 400
+    }
+  },
+  "departments": [
+    {
+      "name": "Engineering",
+      "lead": "Alice",
+      "active": true,
+      "headcount": 42
+    },
+    {
+      "name": "Product",
+      "lead": "Bob",
+      "active": true,
+      "headcount": 15
+    }
+  ]
+}

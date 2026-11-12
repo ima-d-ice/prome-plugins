@@ -1,0 +1,9 @@
+parser,fixture,status,latency_sec,text_coverage,symbol_coverage,quality_score
+python_ast,sample.py,ok,0.003,1.0,1.0,1.0
+tree_sitter,sample.py,ok,0.0065,1.0,1.0,1.0
+tree_sitter,sample.js,ok,0.0009,1.0,1.0,1.0
+tree_sitter,sample.ts,ok,0.001,1.0,1.0,1.0
+tree_sitter,sample.java,ok,0.0009,1.0,1.0,1.0
+tree_sitter,sample.c,ok,0.0009,1.0,1.0,1.0
+tree_sitter,sample.cpp,ok,0.001,1.0,1.0,1.0
+tree_sitter,sample.go,ok,0.0009,1.0,1.0,1.0

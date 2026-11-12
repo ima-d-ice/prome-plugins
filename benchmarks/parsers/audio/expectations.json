@@ -1,0 +1,28 @@
+{
+  "speech_en.wav": {
+    "expected_text": ["quick brown fox", "lazy dog", "parser benchmark"],
+    "expected_language": "en",
+    "min_blocks": 1,
+    "expected_transcript": "The quick brown fox jumps over the lazy dog. Prome rag plugins parser benchmark."
+  },
+  "speech_en.mp3": {
+    "expected_text": ["quick brown fox", "lazy dog"],
+    "expected_language": "en",
+    "min_blocks": 1,
+    "expected_transcript": "The quick brown fox jumps over the lazy dog. Prome rag plugins parser benchmark."
+  },
+  "speech_fr.wav": {
+    "expected_text": ["par dessus", "chien"],
+    "expected_language": "fr",
+    "min_blocks": 1
+  },
+  "long_speech.wav": {
+    "expected_text": ["longer fixture", "segment", "fox"],
+    "expected_language": "en",
+    "min_blocks": 2
+  },
+  "silence.wav": {
+    "expected_text": [],
+    "min_blocks": 0
+  }
+}

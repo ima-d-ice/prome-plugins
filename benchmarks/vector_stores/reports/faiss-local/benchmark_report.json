@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-11-12T10:59:41.331046+00:00",
+  "backend": "faiss",
+  "mode": "local",
+  "environment": {
+    "python": "3.15.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O"
+  },
+  "configuration": {
+    "records": 3000,
+    "queries": 100,
+    "repeats": 1,
+    "top_k": 10,
+    "dimensions": 128,
+    "sparse_terms": 24,
+    "multi_rows": 8,
+    "batch_size": 256,
+    "hnsw_ef": 64,
+    "seed": 20240517,
+    "vector_spaces": {
+      "dense": "dense"
+    }
+  },
+  "notes": [
+    "All vectors are synthetic and deterministic: no model is downloaded and no inference is run.",
+    "The same corpus is used for every backend, so the numbers are comparable.",
+    "Latency and recall are reported separately; there is no combined score.",
+    "Numbers describe this synthetic corpus on this machine; they are not production baselines."
+  ],
+  "skipped": [
+    "sparse",
+    "multi_vector"
+  ],
+  "results": [
+    {
+      "scenario": "dense_exact",
+      "queries": 100,
+      "latency_mean_ms": 8.8046,
+      "latency_p50_ms": 8.2672,
+      "latency_p95_ms": 11.3277,
+      "latency_min_ms": 7.7612,
+      "latency_max_ms": 28.0948,
+      "metric": "cosine",
+      "score_direction": "higher-is-better"
+    },
+    {
+      "scenario": "dense_approximate",
+      "queries": 100,
+      "latency_mean_ms": 1.5934,
+      "latency_p50_ms": 1.559,
+      "latency_p95_ms": 1.7005,
+      "latency_min_ms": 1.5064,
+      "latency_max_ms": 3.144,
+      "recall_at_k": 0.899,
+      "recall_at_k_min": 0.6,
+      "top_k": 10,
+      "index_built": true
+    },
+    {
+      "scenario": "sparse",
+      "queries": 0,
+      "latency_mean_ms": null,
+      "latency_p50_ms": null,
+      "latency_p95_ms": null,
+      "latency_min_ms": null,
+      "latency_max_ms": null,
+      "unsupported": "no sparse search"
+    },
+    {
+      "scenario": "multi_vector",
+      "queries": 0,
+      "latency_mean_ms": null,
+      "latency_p50_ms": null,
+      "latency_p95_ms": null,
+      "latency_min_ms": null,
+      "latency_max_ms": null,
+      "unsupported": "no multi-vector search"
+    },
+    {
+      "scenario": "dense_filtered",
+      "queries": 100,
+      "latency_mean_ms": 3.8238,
+      "latency_p50_ms": 3.605,
+      "latency_p95_ms": 5.3093,
+      "latency_min_ms": 3.3012,
+      "latency_max_ms": 7.4396
+    },
+    {
+      "scenario": "batch_upsert",
+      "queries": null,
+      "records": 3000,
+      "batch_size": 256,
+      "seconds": 2.6347,
+      "records_per_second": 1138.64,
+      "latency_mean_ms": null,
+      "latency_p50_ms": null,
+      "latency_p95_ms": null,
+      "latency_min_ms": null,
+      "latency_max_ms": null
+    },
+    {
+      "scenario": "index_build",
+      "queries": null,
+      "records": null,
+      "batch_size": null,
+      "seconds": 0.2766,
+      "records_per_second": null,
+      "latency_mean_ms": null,
+      "latency_p50_ms": null,
+      "latency_p95_ms": null,
+      "latency_min_ms": null,
+      "latency_max_ms": null,
+      "unsupported": null
+    },
+    {
+      "scenario": "storage_footprint",
+      "queries": null,
+      "records": null,
+      "batch_size": null,
+      "seconds": null,
+      "records_per_second": null,
+      "latency_mean_ms": null,
+      "latency_p50_ms": null,
+      "latency_p95_ms": null,
+      "latency_min_ms": null,
+      "latency_max_ms": null,
+      "bytes": 8566042,
+      "bytes_per_vector": 2855.35
+    }
+  ],
+  "archived_previous": []
+}

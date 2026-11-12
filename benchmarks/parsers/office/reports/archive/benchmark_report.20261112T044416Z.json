@@ -1,0 +1,339 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-12T02:05:25.980395+00:00",
+    "python_version": "3.15.2",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O"
+  },
+  "summaries": [
+    {
+      "parser": "python_docx",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.0071,
+      "throughput_docs_sec": 140.84
+    },
+    {
+      "parser": "docling_docx",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.259,
+      "throughput_docs_sec": 3.86
+    },
+    {
+      "parser": "python_pptx",
+      "success_rate": 1.0,
+      "avg_quality_score": 1.0,
+      "avg_latency_sec": 0.0039,
+      "throughput_docs_sec": 256.45
+    },
+    {
+      "parser": "docling_pptx",
+      "success_rate": 1.0,
+      "avg_quality_score": 0.9167,
+      "avg_latency_sec": 0.0209,
+      "throughput_docs_sec": 47.8
+    }
+  ],
+  "results": [
+    {
+      "parser": "python_docx",
+      "fixture": "simple_text.docx",
+      "status": "ok",
+      "latency_sec": 0.0103,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_docx",
+      "fixture": "headings.docx",
+      "status": "ok",
+      "latency_sec": 0.0085,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_docx",
+      "fixture": "nested_lists.docx",
+      "status": "ok",
+      "latency_sec": 0.0079,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_docx",
+      "fixture": "tables.docx",
+      "status": "ok",
+      "latency_sec": 0.0061,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_docx",
+      "fixture": "images_captions.docx",
+      "status": "ok",
+      "latency_sec": 0.0068,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_docx",
+      "fixture": "headers_footers.docx",
+      "status": "ok",
+      "latency_sec": 0.0057,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_docx",
+      "fixture": "sections.docx",
+      "status": "ok",
+      "latency_sec": 0.0065,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_docx",
+      "fixture": "unicode.docx",
+      "status": "ok",
+      "latency_sec": 0.0066,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_docx",
+      "fixture": "hyperlinks.docx",
+      "status": "ok",
+      "latency_sec": 0.0055,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "simple_text.docx",
+      "status": "ok",
+      "latency_sec": 2.2531,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "headings.docx",
+      "status": "ok",
+      "latency_sec": 0.0093,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "nested_lists.docx",
+      "status": "ok",
+      "latency_sec": 0.0124,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "tables.docx",
+      "status": "ok",
+      "latency_sec": 0.013,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "images_captions.docx",
+      "status": "ok",
+      "latency_sec": 0.0147,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "headers_footers.docx",
+      "status": "ok",
+      "latency_sec": 0.0074,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "sections.docx",
+      "status": "ok",
+      "latency_sec": 0.0071,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "unicode.docx",
+      "status": "ok",
+      "latency_sec": 0.0073,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_docx",
+      "fixture": "hyperlinks.docx",
+      "status": "ok",
+      "latency_sec": 0.007,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_pptx",
+      "fixture": "multi_slide.pptx",
+      "status": "ok",
+      "latency_sec": 0.0074,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_pptx",
+      "fixture": "text_boxes.pptx",
+      "status": "ok",
+      "latency_sec": 0.0026,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_pptx",
+      "fixture": "table.pptx",
+      "status": "ok",
+      "latency_sec": 0.0027,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_pptx",
+      "fixture": "images_notes.pptx",
+      "status": "ok",
+      "latency_sec": 0.0028,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_pptx",
+      "fixture": "shapes.pptx",
+      "status": "ok",
+      "latency_sec": 0.0055,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "python_pptx",
+      "fixture": "unicode.pptx",
+      "status": "ok",
+      "latency_sec": 0.0024,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_pptx",
+      "fixture": "multi_slide.pptx",
+      "status": "ok",
+      "latency_sec": 0.1098,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_pptx",
+      "fixture": "text_boxes.pptx",
+      "status": "ok",
+      "latency_sec": 0.0031,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_pptx",
+      "fixture": "table.pptx",
+      "status": "ok",
+      "latency_sec": 0.0033,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_pptx",
+      "fixture": "images_notes.pptx",
+      "status": "ok",
+      "latency_sec": 0.0041,
+      "text_coverage": 0.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 0.5
+    },
+    {
+      "parser": "docling_pptx",
+      "fixture": "shapes.pptx",
+      "status": "ok",
+      "latency_sec": 0.0026,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    },
+    {
+      "parser": "docling_pptx",
+      "fixture": "unicode.pptx",
+      "status": "ok",
+      "latency_sec": 0.0025,
+      "text_coverage": 1.0,
+      "heading_accuracy": 1.0,
+      "table_accuracy": 1.0,
+      "quality_score": 1.0
+    }
+  ]
+}

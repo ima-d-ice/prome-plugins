@@ -1,0 +1,13 @@
+From: Alice <alice@example.com>
+To: Bob <bob@example.com>
+Subject: Quarterly Sync
+Date: Wed, 11 Nov 2026 14:00:00 +0000
+Message-ID: <msg-001@example.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Hi Bob,
+Let's meet tomorrow at 10 AM to discuss the roadmap.
+Best,
+Alice

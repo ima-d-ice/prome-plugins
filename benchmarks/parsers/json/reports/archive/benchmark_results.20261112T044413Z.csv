@@ -1,0 +1,4 @@
+parser,fixture,status,latency_sec,text_coverage,path_coverage,quality_score
+json_stdlib,nested_object.json,ok,0.0003,1.0,1.0,1.0
+json_stdlib,primitives.json,ok,0.0002,1.0,1.0,1.0
+json_stdlib,stream.ndjson,ok,0.0008,1.0,1.0,1.0

@@ -1,0 +1,2 @@
+parser,status,success_rate,avg_quality_score,avg_latency_sec,throughput_docs_sec
+tesseract_ocr,available,1.0,1.0,0.1167,8.57

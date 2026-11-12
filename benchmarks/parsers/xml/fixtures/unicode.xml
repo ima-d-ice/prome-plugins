@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<international>
+    <greeting lang="fr">Bonjour le monde, café!</greeting>
+    <greeting lang="ja">こんにちは世界</greeting>
+    <greeting lang="el">Καλημέρα κόσμε</greeting>
+    <greeting lang="ru">Привет мир</greeting>
+</international>

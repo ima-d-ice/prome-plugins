@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Field Guide to Reliable Pipelines</title>
+  <meta name="description" content="A long-form guide covering ingestion, validation, storage and operations for document pipelines.">
+  <meta name="author" content="Priya Raman">
+</head>
+<body>
+  <main>
+    <article>
+      <h1>The Field Guide to Reliable Pipelines</h1>
+      <p>Document pipelines fail quietly more often than they fail loudly. A pipeline that drops records silently is far more dangerous than one that crashes on the first malformed input, because the failure only surfaces when someone downstream notices missing data weeks later.</p>
+      <h2>Ingestion</h2>
+      <p>Ingestion is the boundary where external chaos meets internal structure. Every document entering the system should be assigned a stable identifier, a source timestamp, and a provenance record before any transformation is applied to its content.</p>
+      <p>Sources vary wildly in reliability. Some feeds deliver well-formed payloads with accurate metadata; others deliver partial exports with missing fields and truncated bodies. Design the ingester to validate aggressively at the boundary rather than defensively throughout the pipeline.</p>
+      <h2>Validation</h2>
+      <p>Validation rules come in three tiers: schema-level, semantic-level, and policy-level. Schema checks confirm the payload has the right shape; semantic checks confirm values are plausible; policy checks confirm the document is allowed to enter the system at all.</p>
+      <ul>
+        <li>Schema validation rejects documents with missing required fields or wrong types.</li>
+        <li>Semantic validation flags documents whose values fall outside plausible ranges.</li>
+        <li>Policy validation enforces licensing, retention and access constraints before storage.</li>
+      </ul>
+      <h2>Storage</h2>
+      <p>Storage layout should reflect access patterns. Hot documents benefit from local indexing and frequent compaction; cold documents benefit from columnar archival formats that minimize storage cost while preserving exact fidelity for audit retrieval.</p>
+      <p>Indexing strategy matters more than raw capacity. A modest dataset with thoughtful indexing outperforms a massive dataset behind a linear scan, so invest in query-shaped indexes early rather than retrofitting them after painful incidents.</p>
+      <h2>Operations</h2>
+      <p>Operational excellence is mostly about observability. Metrics, structured logs and traces should be designed together so that a single request can be followed from ingress through every stage of the pipeline to its final resting place in storage.</p>
+      <h3>Alerting Philosophy</h3>
+      <p>Alert on symptoms users notice, not on internal mechanics. Page when the pipeline is dropping records or serving stale data; ticket when disk usage trends upward; ignore when a single worker restarts cleanly.</p>
+      <h3>Incident Review</h3>
+      <p>Blameless reviews turn incidents into institutional knowledge. Each review should produce one concrete pipeline improvement, one monitoring improvement and one runbook update, tracked to completion before the review is considered closed.</p>
+      <h2>Capacity Planning</h2>
+      <p>Capacity plans should forecast ingestion growth in documents per day, bytes per document, and concurrent processing load. Budget for peak events such as bulk backfills, because averages hide the spikes that actually break systems.</p>
+      <table>
+        <thead>
+          <tr><th>Stage</th><th>Target Rate</th><th>Owner</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ingestion</td><td>500 docs/min</td><td>Data Platform</td></tr>
+          <tr><td>Validation</td><td>2000 docs/min</td><td>Data Quality</td></tr>
+          <tr><td>Storage</td><td>1000 docs/min</td><td>Infrastructure</td></tr>
+        </tbody>
+      </table>
+      <h2>Closing Thoughts</h2>
+      <p>Reliable pipelines are boring in the best possible way. They validate early, store deliberately, observe continuously, and fail loudly when recovery requires human judgment rather than silent automation.</p>
+      <p>Teams that adopt this posture catch data issues within minutes instead of quarters, and their downstream consumers learn to trust the pipeline enough to automate against it confidently.</p>
+    </article>
+  </main>
+</body>
+</html>

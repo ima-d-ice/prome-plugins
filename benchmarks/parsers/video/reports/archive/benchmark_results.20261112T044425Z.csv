@@ -1,0 +1,4 @@
+parser,fixture,status,latency_sec,metadata_accuracy,frames_extracted,frames_ok,quality_score
+ffmpeg_video,testsrc.mp4,ok,0.0278,1.0,3.0,1.0,1.0
+ffmpeg_video,scene_cut.mp4,ok,0.0019,1.0,3.0,1.0,1.0
+ffmpeg_video,scene_cut.mp4[scene],ok,0.0087,1.0,2.0,1.0,1.0

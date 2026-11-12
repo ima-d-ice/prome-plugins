@@ -1,0 +1,7 @@
+parser,fixture,status,latency_sec,text_coverage,subject_accuracy,quality_score
+eml_stdlib,simple_plain.eml,ok,0.002,1.0,1.0,1.0
+eml_stdlib,html_email.eml,ok,0.0011,1.0,1.0,1.0
+eml_stdlib,multipart_attachment.eml,ok,0.0015,1.0,1.0,1.0
+eml_stdlib,thread_reply.eml,ok,0.0006,1.0,1.0,1.0
+eml_stdlib,unicode.eml,ok,0.0007,1.0,1.0,1.0
+mbox_stdlib,archive.mbox,ok,0.0021,1.0,1.0,1.0
