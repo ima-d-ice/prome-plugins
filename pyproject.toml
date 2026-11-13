@@ -98,6 +98,9 @@ reranking-qwen3 = [
     "sentence-transformers",
     "torch",
 ]
+evaluation-ragas = [
+    "ragas==0.4.3",
+]
 all = [
     "pymupdf>=1.24",
     "pypdf[crypto]>=4.0",
@@ -147,3 +150,6 @@ include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*", "retrieval*
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+
+[_metadata]
+python-version = "3.15.2"
