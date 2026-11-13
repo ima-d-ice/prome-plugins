@@ -17,8 +17,6 @@ from __future__ import annotations
 from typing import Any
 
 from guardrails.prompt_injection.scanner import PromptInjectionScanner
-from guardrails.contracts.models import GuardrailStage
-from guardrails.contracts.exceptions import GuardrailError
 
 
 class ContextScanner:

@@ -13,10 +13,10 @@ The following entities are defined:
 """
 
 from guardrails.contracts.models import (
-    GuardrailStage,
+    GuardrailCapabilities,
     GuardrailDecision,
     GuardrailRequest,
-    GuardrailCapabilities,
+    GuardrailStage,
 )
 
 __all__ = [

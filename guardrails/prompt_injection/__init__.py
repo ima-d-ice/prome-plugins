@@ -17,15 +17,12 @@ Key design:
 - Enforcement: ALLOW, WARN, BLOCK, REVIEW, MARK_SOURCE_UNTRUSTED
 """
 
-from guardrails.prompt_injection.scanner import PromptInjectionScanner
 from guardrails.prompt_injection.context_scanner import ContextScanner
+from guardrails.prompt_injection.decisions import PromptInjectionDecisionMapper
+from guardrails.prompt_injection.scanner import PromptInjectionScanner
 from guardrails.prompt_injection.segmentation import (
-    segment_text_for_prompt_guard,
     detect_truncation,
-)
-from guardrails.prompt_injection.decisions import (
-    PromptInjectionDecisionMapper,
-    PromptInjectionDecisionMapper as DecisionMapper,
+    segment_text_for_prompt_guard,
 )
 
 __all__ = [

@@ -21,16 +21,15 @@ or Groq runtime dependency. Optional model integration is available when
 the Generation subsystem is present.
 """
 
+from guardrails.audit.events import AuditEvent
 from guardrails.contracts.models import (
-    GuardrailStage,
+    GuardrailCapabilities,
     GuardrailDecision,
     GuardrailRequest,
-    GuardrailCapabilities,
+    GuardrailStage,
 )
-
-from guardrails.policies.engine import PolicyEngine
 from guardrails.enforcement.engine import EnforcementEngine
-from guardrails.audit.events import AuditEvent
+from guardrails.policies.engine import PolicyEngine
 
 __all__ = [
     "GuardrailStage",

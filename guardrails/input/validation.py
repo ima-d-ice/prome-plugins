@@ -24,7 +24,6 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from guardrails.contracts.models import GuardrailStage
 from guardrails.contracts.exceptions import (
     GuardrailConfigError,
     GuardrailError,
@@ -214,7 +213,6 @@ def validate_metadata(
 def _is_safe_value(value: Any) -> bool:
     """Check if a metadata value is of a safe, serializable type."""
 
-    import numbers
 
     if isinstance(value, (str, int, float, bool)):
         return True

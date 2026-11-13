@@ -47,13 +47,10 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from guardrails.contracts.models import GuardrailStage
 from guardrails.contracts.exceptions import (
-    GuardrailError,
     GuardrailConfigError,
-    PrivacyRedactionError,
+    GuardrailError,
 )
-
 
 #: Regex patterns for initial detection categories
 _EMAIL_PATTERN = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")

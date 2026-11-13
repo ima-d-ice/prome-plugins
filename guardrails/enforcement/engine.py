@@ -78,31 +78,23 @@ from __future__ import annotations
 from typing import Any
 
 from guardrails.contracts.models import (
-    GuardrailStage,
     GuardrailDecision,
     GuardrailRequest,
+    GuardrailStage,
 )
-from guardrails.contracts.exceptions import (
-    GuardrailError,
-    GuardrailConfigError,
-)
+from guardrails.output.citation_validation import CitationValidator
+from guardrails.output.validation import OutputValidator
 from guardrails.policies.engine import PolicyEngine
+from guardrails.privacy.detectors import PrivacyDetector
+from guardrails.privacy.rules import PrivacyRules
 from guardrails.prompt_injection.scanner import PromptInjectionScanner
-from guardrails.prompt_injection.decisions import (
-    PromptInjectionDecisionMapper,
-)
-from guardrails.source_security.trust import (
-    TrustState,
-    SourceTrustRecord,
-    SourceProvenance,
-)
 from guardrails.source_security.access_control import (
     AccessControlEngine,
     UserAccessContext,
 )
-from guardrails.output.validation import OutputValidator
-from guardrails.output.citation_validation import CitationValidator
-from guardrails.privacy.detectors import PrivacyDetector
+from guardrails.source_security.trust import (
+    TrustState,
+)
 
 
 class EnforcementEngine:
@@ -630,9 +622,9 @@ class EnforcementEngine:
         """
 
         from guardrails.input.validation import (
-            validate_user_input,
             validate_metadata,
             validate_request_id,
+            validate_user_input,
         )
 
         result: dict[str, Any] = {"valid": True, "errors": []}
@@ -657,7 +649,7 @@ class EnforcementEngine:
         # Validate metadata
         if request.source_metadata:
             try:
-                validated_metadata = validate_metadata(request.source_metadata)
+                validate_metadata(request.source_metadata)
             except Exception as e:
                 result["valid"] = False
                 result["errors"].append(

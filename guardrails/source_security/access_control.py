@@ -1,11 +1,10 @@
 from __future__ import annotations
-from enum import Enum
 
 from dataclasses import dataclass, field
-from typing import Any
+from enum import Enum
 
-from guardrails.contracts.models import GuardrailStage, GuardrailDecision
-from guardrails.contracts.exceptions import GuardrailError, AccessControlError
+from guardrails.contracts.exceptions import GuardrailError
+from guardrails.contracts.models import GuardrailStage
 
 """Source security: access control and tenant isolation.
 
@@ -148,7 +147,7 @@ class AccessControlEngine:
       correctness-preserving enforcement layer.
     """
 
-    def __init__(self, policies: list["TenantPolicy"] | None = None) -> None:
+    def __init__(self, policies: list[TenantPolicy] | None = None) -> None:
         """Initialize the access control engine.
 
         Args:
@@ -157,8 +156,8 @@ class AccessControlEngine:
                 scope).
         """
 
-        self._policies: list["TenantPolicy"] = policies or []
-        self._tenant_index: dict[str, list["TenantPolicy"]] = {}
+        self._policies: list[TenantPolicy] = policies or []
+        self._tenant_index: dict[str, list[TenantPolicy]] = {}
         self._build_tenant_index()
 
     def _build_tenant_index(self) -> None:
@@ -170,7 +169,7 @@ class AccessControlEngine:
                 self._tenant_index[policy.tenant_id] = []
             self._tenant_index[policy.tenant_id].append(policy)
 
-    def add_policy(self, policy: "TenantPolicy") -> None:
+    def add_policy(self, policy: TenantPolicy) -> None:
         """Add a tenant access policy.
 
         Args:

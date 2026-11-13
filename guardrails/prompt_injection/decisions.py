@@ -16,8 +16,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from guardrails.contracts.models import GuardrailStage, GuardrailDecision
-from guardrails.contracts.exceptions import GuardrailError
+from guardrails.contracts.models import GuardrailDecision, GuardrailStage
 
 
 class PromptInjectionDecisionMapper:

@@ -13,7 +13,6 @@ from __future__ import annotations
 from typing import Any
 
 from guardrails.privacy.detectors import (
-    DetectorResult,
     PrivacyDetector,
     PrivacyRules,
 )

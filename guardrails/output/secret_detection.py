@@ -24,7 +24,7 @@ from __future__ import annotations
 from typing import Any
 
 from guardrails.contracts.exceptions import GuardrailError
-from guardrails.privacy.detectors import PrivacyDetector, DetectorResult
+from guardrails.privacy.detectors import DetectorResult, PrivacyDetector
 
 
 class OutputSecretDetectionError(GuardrailError):

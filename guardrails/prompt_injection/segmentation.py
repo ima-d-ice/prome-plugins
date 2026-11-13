@@ -20,6 +20,7 @@ consistent with the Generation subsystem's Prompt Guard implementation.
 """
 
 from __future__ import annotations
+
 from typing import Any
 
 

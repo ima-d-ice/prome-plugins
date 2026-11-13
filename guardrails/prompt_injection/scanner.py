@@ -14,10 +14,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from guardrails.prompt_injection.segmentation import (
-    segment_text_for_prompt_guard,
-    detect_truncation,
-)
+from guardrails.contracts.exceptions import GuardrailConfigError
 
 logger = logging.getLogger(__name__)
 
@@ -162,7 +159,6 @@ class PromptInjectionScanner:
         """
 
         # Ensure classifier is available
-        Cls = self._classifier_cls
 
         # Determine language route
         effective_language = self._determine_language(language_code, text)

@@ -27,13 +27,6 @@ from datetime import datetime, timezone
 from enum import Enum, auto
 from typing import Any
 
-from guardrails.contracts.models import GuardrailStage
-from guardrails.contracts.exceptions import (
-    GuardrailError,
-    SourceTrustError,
-    GuardrailConfigError,
-)
-
 
 class TrustState(Enum):
     """Trust state of a source or context item."""
@@ -90,7 +83,7 @@ class SourceMetadata:
     timestamp: float | None = None
     diagnostics: dict[str, Any] | None = None
 
-    def with_updated_trust(self, new_state: TrustState) -> "SourceMetadata":
+    def with_updated_trust(self, new_state: TrustState) -> SourceMetadata:
         """Return new SourceMetadata with updated trust state.
 
         Args:
@@ -114,7 +107,7 @@ class SourceMetadata:
             diagnostics=self.diagnostics,
         )
 
-    def with_updated_diagnostics(self, additional: dict[str, Any]) -> "SourceMetadata":
+    def with_updated_diagnostics(self, additional: dict[str, Any]) -> SourceMetadata:
         """Return new SourceMetadata with updated diagnostics.
 
         Args:
@@ -168,7 +161,7 @@ class SourceTrustRecord:
         policy_id: str,
         decision: str,
         timestamp: float | None = None,
-    ) -> "SourceTrustRecord":
+    ) -> SourceTrustRecord:
         """Add a new audit entry to the trust record's trail.
 
         Args:
@@ -189,7 +182,7 @@ class SourceTrustRecord:
 
         return self._replace_with_trail(new_trail)
 
-    def _replace_with_trail(self, audit_trail: tuple) -> "SourceTrustRecord":
+    def _replace_with_trail(self, audit_trail: tuple) -> SourceTrustRecord:
         """Internal helper to create a new record with updated audit trail."""
 
         # Since dataclasses are frozen, we create a new instance

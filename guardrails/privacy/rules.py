@@ -26,10 +26,7 @@ Per-category overrides are supported.
 
 from __future__ import annotations
 
-from typing import Any
-
-from guardrails.privacy.detectors import PrivacyDetector, PrivacyRules, DetectorResult
-
+from guardrails.privacy.detectors import PrivacyDetector, PrivacyRules
 
 #: Default privacy rules with default action of "detect"
 DEFAULT_PRIVACY_RULES = PrivacyRules(default_action="detect")
