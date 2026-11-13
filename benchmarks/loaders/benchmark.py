@@ -27,8 +27,8 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-from loaders.filesystem import FileLoader, DirectoryLoader
-from loaders.uploads import UploadManager, UploadedFile, UploadedFileStatus
+from loaders.filesystem import DirectoryLoader, FileLoader
+from loaders.uploads import UploadedFile, UploadedFileStatus, UploadManager
 
 
 def make_fixture_tree(root: Path, num_files: int = 30, file_bytes: int = 4096) -> None:

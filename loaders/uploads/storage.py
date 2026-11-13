@@ -32,7 +32,7 @@ class StorageBackend:
         index_path = self.storage_root / ".upload_index.json"
         if index_path.exists():
             try:
-                with open(index_path, "r") as f:
+                with open(index_path) as f:
                     self._index = json.load(f)
             except (json.JSONDecodeError, OSError):
                 self._index = {}

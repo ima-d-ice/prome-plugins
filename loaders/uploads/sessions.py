@@ -101,7 +101,7 @@ class UploadSessionManager:
         """Load sessions from disk."""
         if self._index_path.exists():
             try:
-                with open(self._index_path, "r") as f:
+                with open(self._index_path) as f:
                     data = json.load(f)
                 for session_data in data.get("sessions", []):
                     session = UploadSession.from_dict(session_data)
