@@ -8,13 +8,12 @@ batch execution, device configuration, truncation, sorting, and top-k.
 from __future__ import annotations
 
 import math
+
 import pytest
 
 # ---------------------------------------------------------------------------
 # Fake CrossEncoder for testing without real model weights
 # ---------------------------------------------------------------------------
-
-from sentence_transformers import CrossEncoder as _CE
 
 
 class _FakeCrossEncoder:
@@ -79,15 +78,13 @@ def _adapter_test_fixture():
 # Test classes
 # ---------------------------------------------------------------------------
 
-from reranking.qwen3.reranker import Qwen3Reranker
+from reranking.contracts.exceptions import RerankConfigError
 from reranking.contracts.models import (
     RerankCandidate,
     RerankRequest,
-    RerankedItem,
-    RerankResponse,
     RerankScoreInterpretation,
 )
-from reranking.contracts.exceptions import RerankConfigError
+from reranking.qwen3.reranker import Qwen3Reranker
 
 
 class TestAdapterLazyInitialization:

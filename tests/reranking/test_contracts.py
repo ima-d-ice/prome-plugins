@@ -11,20 +11,13 @@ import pytest
 
 from reranking.contracts.models import (
     RerankCandidate,
-    RerankRequest,
+    RerankDiagnostics,
     RerankedItem,
+    RerankRequest,
     RerankResponse,
     RerankScoreInterpretation,
-    RerankDiagnostics,
 )
 from reranking.contracts.protocols import Reranker
-from reranking.contracts.exceptions import (
-    RerankConfigError,
-    RerankDependencyError,
-    RerankError,
-    InvalidScoreError,
-    UnsupportedDeviceError,
-)
 
 
 def test_rerank_candidate_creation_preserves_fields():
@@ -180,7 +173,6 @@ def test_reranker_protocol_is_runtime_checkable():
     """Test that the Reranker protocol is runtime checkable."""
     # A class that implements the required attributes/methods should be
     # an instance of the protocol.
-    from reranking.contracts.protocols import Reranker
 
     class FakeReranker:
         model_id = "fake-model"
@@ -193,7 +185,7 @@ def test_reranker_protocol_is_runtime_checkable():
         def capabilities(self) -> dict[str, Any]:
             return {}
 
-        def rerank(self, request: "RerankRequest") -> "RerankResponse":
+        def rerank(self, request: RerankRequest) -> RerankResponse:
             from reranking.contracts.models import RerankResponse
             return RerankResponse(
                 reranked_items=(),
@@ -207,7 +199,6 @@ def test_reranker_protocol_is_runtime_checkable():
 
 def test_reranker_protocol_is_not_object():
     """Test that plain object is not an instance of the Reranker protocol."""
-    from reranking.contracts.protocols import Reranker
 
     assert not isinstance(object(), Reranker)
 

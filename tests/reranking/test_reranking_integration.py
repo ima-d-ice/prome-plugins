@@ -18,28 +18,20 @@ C. **Real-model integration tests** (`test_reranking_integration.py`): use
 
 from __future__ import annotations
 
-import math
 import os
+
 import pytest
 
 # ---------------------------------------------------------------------------
 # A. Dependency-free unit tests (imports only, no model weights)
 # ---------------------------------------------------------------------------
-
 from reranking.contracts.models import (
     RerankCandidate,
-    RerankRequest,
+    RerankDiagnostics,
     RerankedItem,
+    RerankRequest,
     RerankResponse,
     RerankScoreInterpretation,
-    RerankDiagnostics,
-)
-from reranking.contracts.exceptions import (
-    RerankConfigError,
-    RerankDependencyError,
-    RerankError,
-    InvalidScoreError,
-    UnsupportedDeviceError,
 )
 
 
@@ -155,7 +147,6 @@ def test_rerank_diagnostics_defaults():
 # B. Adapter tests - using a fake CrossEncoder-like scorer
 # ---------------------------------------------------------------------------
 
-from sentence_transformers import CrossEncoder as _CE
 
 
 class _FakeCrossEncoder:
