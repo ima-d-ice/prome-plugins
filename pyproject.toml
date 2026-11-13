@@ -57,8 +57,18 @@ video = [
     "av>=11",
     "numpy>=1.26",
 ]
+observability = [
+    "opentelemetry-api>=1.27,<2",
+    "opentelemetry-sdk>=1.27,<2",
+    "opentelemetry-exporter-otlp-proto-grpc>=1.27,<2",
+    "opentelemetry-exporter-otlp-proto-http>=1.27,<2",
+]
 dev = [
     "pytest>=8.0",
+    "opentelemetry-api>=1.27,<2",
+    "opentelemetry-sdk>=1.27,<2",
+    "opentelemetry-exporter-otlp-proto-grpc>=1.27,<2",
+    "opentelemetry-exporter-otlp-proto-http>=1.27,<2",
     "beautifulsoup4>=4.12",
     "trafilatura>=1.8",
     "python-docx>=1.2",
@@ -117,10 +127,22 @@ all = [
     "psycopg[binary]>=3.2",
     "pgvector>=0.4",
     "pytest>=8.0",
+    "opentelemetry-api>=1.27,<2",
+    "opentelemetry-sdk>=1.27,<2",
+    "opentelemetry-exporter-otlp-proto-grpc>=1.27,<2",
+    "opentelemetry-exporter-otlp-proto-http>=1.27,<2",
 ]
 
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+# Upstream ruff defaults (E4/E7/E9/F) plus warnings, import sorting, and pyupgrade.
+select = ["E4", "E7", "E9", "F", "W", "I", "UP"]
+
 [tool.setuptools.packages.find]
-include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*", "retrieval*", "reranking*"]
+include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*", "retrieval*", "reranking*", "observability*"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
