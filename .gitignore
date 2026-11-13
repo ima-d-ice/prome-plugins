@@ -6,6 +6,7 @@ __pycache__/
 build/
 dist/
 benchmarks/vector_stores/.data/
+.env
 
 # Evaluation generated runs
 evaluation/runs/
