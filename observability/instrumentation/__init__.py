@@ -1,0 +1,55 @@
+"""Reusable instrumentation helpers for Prome RAG components."""
+from __future__ import annotations
+
+from .context_managers import active_request, operation_span, timed_operation
+from .decorators import traced, traced_operation
+from .integrations import (
+    instrument_bm25_retriever,
+    instrument_child_stage,
+    instrument_chunker,
+    instrument_component,
+    instrument_context_expander,
+    instrument_dense_retriever,
+    instrument_embedding,
+    instrument_evaluation,
+    instrument_fusion,
+    instrument_generation,
+    instrument_guardrails,
+    instrument_hierarchical_retriever,
+    instrument_hybrid_retriever,
+    instrument_indexing,
+    instrument_loader,
+    instrument_orchestration,
+    instrument_parent_stage,
+    instrument_parser,
+    instrument_reranker,
+    instrument_vector_store,
+)
+
+__all__ = [
+    "active_request",
+    "instrument_bm25_retriever",
+    "instrument_child_stage",
+    "instrument_chunker",
+    "instrument_component",
+    "instrument_context_expander",
+    "instrument_dense_retriever",
+    "instrument_embedding",
+    "instrument_evaluation",
+    "instrument_fusion",
+    "instrument_generation",
+    "instrument_guardrails",
+    "instrument_hierarchical_retriever",
+    "instrument_hybrid_retriever",
+    "instrument_indexing",
+    "instrument_loader",
+    "instrument_orchestration",
+    "instrument_parent_stage",
+    "instrument_parser",
+    "instrument_reranker",
+    "instrument_vector_store",
+    "operation_span",
+    "timed_operation",
+    "traced",
+    "traced_operation",
+]
