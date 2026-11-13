@@ -120,7 +120,7 @@ all = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*", "retrieval*", "reranking*"]
+include = ["parsers*", "chunkers*", "embeddings*", "vector_stores*", "retrieval*", "reranking*", "generation*"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
