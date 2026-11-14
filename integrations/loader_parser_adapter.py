@@ -48,7 +48,6 @@ def _guess_parser_extension(content_type: ContentType | None, filename: str | No
         ContentType.JSON: ".json",
         ContentType.HTML: ".html",
         ContentType.PDF: ".pdf",
-        ContentType.XML: ".xml",
         ContentType.CODE: ".py",
         ContentType.MARKDOWN: ".md",
     }

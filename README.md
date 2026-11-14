@@ -570,3 +570,41 @@ not production baselines.
 
 MIT
 # prome-plugins
+
+## Integration Hardening (feature/integration-hardening)
+
+This branch hardens the `integrations/` package for correct packaging, independent
+testability, provenance safety, and reliability across vector stores and observability
+configurations.
+
+### Changes
+
+- **Packaging**: `integrations/` added to setuptools package discovery; wheel builds
+  correctly with all 6 adapter modules importable from the installed distribution.
+
+- **Provenance Chain**: Heuristic doc_id parsing replaced with explicit `.` delimiter
+  requirement (e.g., `doc77.chunk-003`). `source_id`, `doc_id`, `chunk_id` preserved
+  separately without heuristic parsing.
+
+- **Deletion Coordination**: `IndexSyncCoordinator` supports `delete_by_document()` when
+  available on the vector store, with `delete_by_filter()` fallback when
+  `TypeError` is raised. Document ID derived from `source_id` when not supplied.
+  Idempotent repeated deletion is safe. Both dense (vector) and lexical (BM25/FTS5)
+  indexes are updated.
+
+- **Observability**: Trace ID generation fixed (module-level function scoping);
+  `PipelineTracer` generates `trace_id` directly; `record_stage`/`record_error` use
+  `hasattr` for `SpanScope` attribute safety. One request ID and one coherent trace
+  propagated per pipeline. No-op when observability is not configured.
+
+- **Test Coverage**: 6 adapter modules with ~52 deterministic tests using FakeVectorStore
+  doubles. Full suite: 51/52 integration tests pass (1 skipped: ragas optional
+  dependency). 414 tests pass across loaders, retrieval, reranking, and observability.
+
+### Packaging Verification
+
+```bash
+pip install -e '.[dev]'
+python -c "from integrations import parse_loaded_resource, retrieved_item_to_rerank_candidate, reranked_to_generation_context, eval_sample_from_pipeline, experiment_config_from_pipeline, pipeline_outputs_to_eval_sample, IndexSyncCoordinator, ensure_observability, shutdown_observability, set_request_context, get_request_context, span, PipelineTracer, trace_pipeline_stage, trace_request_id, trace_trace_id"
+python -m pytest tests/integrations -q  # 51 passed, 1 skipped
+```
