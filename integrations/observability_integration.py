@@ -82,16 +82,16 @@ def set_request_context(request_id: str, trace_id: Optional[str] = None) -> None
             generated or the system uses its default propagation.
     """
     global _request_id, _trace_id
+
+    def _generate_trace_id() -> str:
+        import uuid
+        return str(uuid.uuid4())
+
     _request_id = request_id
     _trace_id = trace_id or _generate_trace_id()
     bind_request_id(request_id)
     # Ensure observability is initialized
     ensure_observability()
-
-
-    def _generate_trace_id() -> str:
-        import uuid
-        return str(uuid.uuid4())
 
 
 def get_request_context() -> dict[str, str]:
@@ -160,16 +160,13 @@ class PipelineTracer:
     """
 
     def __init__(self, request_id: str, trace_id: Optional[str] = None) -> None:
+        import uuid
         self.request_id = request_id
-        self.trace_id = trace_id or _generate_trace_id()
+        self.trace_id = trace_id or str(uuid.uuid4())
         self.stage_latencies: Dict[str, float] = {}
         self.errors: List[str] = []
         self._start_time: Optional[float] = None
         self._tracer_span: Optional["_TracerContext"] = None
-
-    def _generate_trace_id() -> str:
-        import uuid
-        return str(uuid.uuid4())
 
     def start(self) -> None:
         """Start the pipeline trace.  Creates the root span."""
@@ -219,13 +216,19 @@ class PipelineTracer:
         """
         self.stage_latencies[stage] = latency_ms
         if self._tracer_span is not None and attributes:
-            self._tracer_span.attributes.update(attributes)
+            if hasattr(self._tracer_span, "attributes"):
+                self._tracer_span.attributes.update(attributes)
+            elif hasattr(self._tracer_span, "set_attributes"):
+                self._tracer_span.set_attributes(attributes)
 
     def record_error(self, error: str) -> None:
         """Record a pipeline error."""
         self.errors.append(error)
         if self._tracer_span is not None:
-            self._tracer_span.attributes["pipeline_error"] = error
+            if hasattr(self._tracer_span, "attributes"):
+                self._tracer_span.attributes["pipeline_error"] = error
+            elif hasattr(self._tracer_span, "set_attributes"):
+                self._tracer_span.set_attributes({"pipeline_error": error})
 
     def get_metrics_snapshot(self) -> Dict[str, Any]:
         """Return a metrics snapshot for this pipeline run."""
